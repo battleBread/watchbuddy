@@ -32,7 +32,6 @@ class Navbar extends Component {
     });
   }
 
-
   render () {
     return (
 
@@ -49,6 +48,7 @@ class Navbar extends Component {
             <Button icon color = 'black'>
               <Icon name = 'search' className = 'icon' onClick = { this.handleSubmit.bind(this) } />
             </Button>
+
           </Menu.Item>
 
           { this.state.loggedIn === 'true' 

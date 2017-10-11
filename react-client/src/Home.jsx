@@ -2,20 +2,11 @@ import React, { Component } from 'react';
 import ShowList from './components/ShowList.jsx';
 import Navbar from './components/Navbar.jsx';
 import { Container, Header, Icon, Button, Image, Transition } from 'semantic-ui-react'
-// import twil from '../server/twilio.js';
+
 
 class Home extends Component {
   constructor(props) {
-    super(props);
-    this.sendTwil = this.sendTwil.bind(this);
-  }
-
-  sendTwil() {
-    let number = '+14152354088';
-    let name = 'Devon';
-    let showName = 'Rick and Morty';
-    console.log('twilio clicked');
-    //twil.sendReminder(number, name, showName);
+    super(props)
   }
 
   render () {

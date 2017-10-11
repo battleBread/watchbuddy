@@ -25,3 +25,5 @@ const User = sequelize.define('user', {
     type: Sequelize.STRING,
   },
 });
+
+User.sync();

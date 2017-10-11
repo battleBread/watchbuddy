@@ -4,7 +4,8 @@ const moment = require('moment');
 const db = require('../database-mysql');
 const moviedb = require('../helper/moviedb.js');
 const utils = require('./hashUtils.js');
-const routes = require('./routeHelpers/index.js');
+const routes = require('./routeHelpers');
+const pg = require('../database-postgres');
 
 const app = express();
 

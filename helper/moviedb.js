@@ -1,5 +1,6 @@
 const request = require('request');
 const config = require('../config.js');
+const Promise = require('bluebird');
 
 /* Is this even used?? */
 let getInfoByTitle = (title, callback) => {
@@ -26,40 +27,62 @@ let getInfoByTitle = (title, callback) => {
 //   })
 // }
 
-let getPopularShows = (callback) => {
+let getPopularShows = () => {
 	let options = {
     url: `https://api.themoviedb.org/3/tv/popular?api_key=${config.TOKEN}&language=en-US&page=1`,
     headers: {
       'User-Agent': 'request'
     }
   }
-	request(options, (err, res, body) => {
-		callback(body)
-	})
+
+  return new Promise(function(resolve, reject) {
+    request(options, (err, res, body) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(body);
+      }
+    })
+  })
 }
 
-let getPopularMovies = (callback) => {
+let getPopularMovies = () => {
 	let options = {
 		url: `https://api.themoviedb.org/3/movie/popular?api_key=${config.TOKEN}&language=en-US&page=1`,
     headers: {
       'User-Agent': 'request'
     }
 	}
-  request(options, (err, res, body) => {
-    callback(body)
+  return new Promise(function(resolve, reject) {
+    request(options, (err, res, body) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(body);
+      }
+    })
   })
+
+
 }
 
-let genre = (callback) => {
+let genre = () => {
 	let options = {
 		url: `https://api.themoviedb.org/3/genre/tv/list?api_key=${config.TOKEN}&language=en-US`,
 		headers: {
 			'User-Agent': 'request'
 		}
 	}
-	request(options, (err, res, body) => {
-		callback(body)
-	})
+  return new Promise(function(resolve, reject) {
+    request(options, (err, res, body) => {
+      if(err) {
+        reject(err)
+      } else {
+        resolve(body);
+      }
+    })   
+  })
+
 }
 
 let movieGenres = (callback) => {
@@ -69,6 +92,15 @@ let movieGenres = (callback) => {
       'User-Agent': 'request'
     }
   }
+  return new Promise(function(resolve, reject) {
+    request(options, (err, res, body) => {
+      if(err) {
+        reject(err)
+      } else {
+        resolve(body);
+      }
+    })   
+  })
 }
 
 let search = (title, callback) => {

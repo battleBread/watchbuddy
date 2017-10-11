@@ -27,7 +27,10 @@ class Navbar extends Component {
       method: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({term: this.state.term}),
-      success: data => {this.props.getShowList(data)},
+      success: data => {
+        console.log(data);
+        this.props.getShowList(data)
+      },
       error: data => console.log('err from search submit')
     });
   }

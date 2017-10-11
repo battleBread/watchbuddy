@@ -39,6 +39,7 @@ module.exports = (req, res) => {
   .then((data) => {
     const top = JSON.parse(data).results.splice(0, 5);
     var movieArray = top.map(movie => {
+      console.log(movie);
       const { title, id } = movie;
       const arr = movie.genre_ids.map(int => {
         for (var i = 0; i < movieGenres.genres.length; i++) {
@@ -48,7 +49,7 @@ module.exports = (req, res) => {
         }
       });
       return ({
-        title,
+        name: title,
         id,
         genres: arr,
         summary: movie.overview,
@@ -56,7 +57,12 @@ module.exports = (req, res) => {
         image: `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`,
       });
     });
-    array = array.concat(movieArray);
-    res.send(array);
+    // array = array.concat(movieArray);
+    // res.send(array);
+    var responseObj = {
+      tv: array,
+      movie: movieArray
+    }
+    res.send(responseObj)
   })
 }

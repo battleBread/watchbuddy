@@ -5,9 +5,12 @@ module.exports = (req, res) => {
 	console.log(req.body.term);
 	var title = req.body.term;
 	var genres;
-	moviedb.genre(data => {
+	return moviedb.genre()
+	.then(data => {
+		console.log('genres', data)
 		genres = JSON.parse(data).genres;
 		moviedb.search(title, data => {
+			console.log(data);
 			var searched = JSON.parse(data).results.splice(0, 10);
 			var array = searched.map(el => {
 				const { name, id } = el;

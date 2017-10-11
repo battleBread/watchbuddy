@@ -27,3 +27,12 @@ const User = sequelize.define('user', {
 });
 
 User.sync();
+
+// User
+//   .sync({force:true})
+//   .then(() => User.create({
+//     username: '3',
+//     phone: '8675309',
+//   }))
+//   .then(() => User.findAll())
+//   .then(users => console.log(users));

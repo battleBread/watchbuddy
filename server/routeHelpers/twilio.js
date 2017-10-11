@@ -1,4 +1,4 @@
-const config = require('../config.js');
+const config = require('../../config.js');
 const accountSid = config.ACCOUNTSID;
 const authToken = config.AUTHTOKEN;
 const client = require('twilio')(accountSid, authToken);
@@ -27,8 +27,8 @@ client.messages
 }
 
 
-module.exports.sendReminder = sendReminder;
-module.exports.askForRating = askForRating;
+// module.exports.sendReminder = sendReminder;
+// module.exports.askForRating = askForRating;
 
 
 /* 
@@ -51,33 +51,42 @@ after the alotted time of binge watching the show,
 
 //app.use(bodyParser.urlencoded({ extended: false}));
 //the above line is required to getting the text from user
-app.post('/twilio', function(req,res) {
+// app.post('/twilio')
+
+const twilio = (req, res) => {
   console.log('twilio called from server');
   let number = '+14152354088';
   let name = 'Devon';
   let showName = 'The Bachelor';
   //sends out the reminder to user about watching show
   console.log('twilio clicked');
-  twilio.sendReminder(number, name, showName);
+  sendReminder(number, name, showName);
   //sends a txt asking for a rating for the show
   setTimeout(function(){
-    twilio.askForRating(number, name, showName);
+    askForRating(number, name, showName);
   }, 30000)
   res.send('asking for rating');
-})
+}
 
-app.post('/message', function (req, res) {
-  //this is the users phone number, we can match this with name in DB
-  var msgFrom = req.body.From;
-  //this is the body of the txt message sent back
-  var msgBody = req.body.Body;
-  console.log('server received a text from twilio reply: ', req.body.Body);
+// app.post('/message'); 
+
+const message = (req, res) => {
+  // From is the users phone number, we can match this with name in DB
+  // Body is the body of the txt message sent back
+  const { From, Body } = req.body;
+
+  console.log('server received a text from twilio reply: ', Body);
 //currently not working correctly but it does send a reply
   res.send(`
     <Response>
       <Message>
-        Hey there ${msgFrom}. Thank you very much for your rating of ${msgBody}. We have updated our databases with your latest review!
+        Hi, ${From}! Thank you very much for your rating of ${Body}. We have updated our databases with your latest review!
       </Message>
     </Response> 
     `);
-}); 
+};
+
+module.exports = {
+  twilio,
+  message,
+}

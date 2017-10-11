@@ -1,5 +1,8 @@
+const { twilio, message } = require('./twilio');
 //Exports all route handlers as a single object
 module.exports = {
+  twilio,
+  message,
   recommend: require('./recommend'),
   search: require('./search'),
   signup: require('./signup'),

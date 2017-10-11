@@ -52,10 +52,6 @@ class ShowList extends Component {
     : <div> { this.state.loaded === 'true' 
         ? <Segment inverted>
             <Grid celled>
-              <Grid.Row>
-              <Grid.Column width={8}><h3>TV Shows</h3></Grid.Column>
-              <Grid.Column width={8}><h3>Movies</h3></Grid.Column>
-              </Grid.Row>
               { this.state.showList.map((show, i) => <ShowEntry show={show} key={i} movie={this.state.movieList[i]} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow}/>) }
             </Grid>
           </Segment> 

@@ -27,7 +27,7 @@ class ShowEntry extends Component {
           </Container>
         </Grid.Column>
 
-      <Grid.Column width={5}>
+      <Grid.Column width={13}>
         <ul style={{listStyle: 'none'}}>
           <li><h4>{this.props.show.name}</h4></li>
           <ul>{this.props.show.genres.map((genre, i) => <li key={i}>{genre}</li>)}</ul>
@@ -37,37 +37,6 @@ class ShowEntry extends Component {
           <li>First aired: {this.props.show.firstAirDate}</li>
         </ul>
       </Grid.Column>
-
-      <Grid.Column width={3}>
-        <Container>
-        <Image src={this.props.movie.image} size='huge' verticalAlign='middle'/>
-        { this.props.loggedIn === 'true' && 
-          <Button 
-            fluid icon size='big' 
-            inverted color='red' 
-            onClick={() => {
-              this.props.addShow(); //needs to be updated
-              let showObj = {};
-              showObj.id = this.props.movie.id;
-              showObj.name = this.props.movie.name;
-              this.props.getShow(showObj);
-            }}>
-            Add movie <Icon name='add to calendar'/>
-          </Button> }
-        </Container>
-      </Grid.Column>
-
-      <Grid.Column width={5}>
-        <ul style={{listStyle: 'none'}}>
-          <li><h4>{this.props.movie.name}</h4></li>
-          <ul>{this.props.movie.genres.map((genre, i) => <li key={i}>{genre}</li>)}</ul>
-          <p></p>
-          <li>{this.props.movie.summary}</li>
-          <p></p>
-          <li>Release Date: {this.props.movie.firstAirDate}</li>
-        </ul>
-      </Grid.Column>
-
     </Grid.Row>)
   }
 }

@@ -1,9 +1,29 @@
 import React, { Component } from 'react';
 import { Container, Image, List, Button, Icon, Grid } from 'semantic-ui-react';
+import $ from 'jquery';
 
 class ShowEntry extends Component {
   constructor(props) {
     super(props);
+  }
+
+  sendTwilio() {
+    //things needed here are user's NAME, Phone number, and Show they are watching.
+    //we can send the twilio text to thier number and ask for ratings.
+    let name = 'James Bond';
+    let number = '+1234567890';
+    let show = this.props.show.name;
+    $.ajax({
+      url: '/twilio',
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({name: name,
+                            number: number,
+                            show: show
+      }),
+      success: data => {console.log('twilio txt sent')},
+      error: data => console.log('err from search submit')
+    });
   }
 
   render() {
@@ -35,6 +55,7 @@ class ShowEntry extends Component {
           <li>{this.props.show.summary}</li>
           <p></p>
           <li>First aired: {this.props.show.firstAirDate}</li>
+          <Button color ='blue' onClick = {this.sendTwilio.bind(this)}>Remind Me to Watch this show!</Button>
         </ul>
       </Grid.Column>
     </Grid.Row>)

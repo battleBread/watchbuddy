@@ -1,7 +1,7 @@
 const request = require('request');
 const config = require('../config.js');
 
-/* Is this used?? */
+/* Is this even used?? */
 let getInfoByTitle = (title, callback) => {
 	let options = {
 		url: `https://api.themoviedb.org/3/find/en/${title}?api_key=${config.TOKEN}&external_source=freebase_id`,
@@ -139,7 +139,11 @@ let episode = (id, season, episode, callback) => {
 
 module.exports.getInfoByTitle = getInfoByTitle;
 module.exports.getPopularShows = getPopularShows;
+module.exports.getPopularMovies = getPopularMovies;
 module.exports.genre = genre;
+module.exports.movieGenres = movieGenres;
 module.exports.search = search;
+module.exports.searchMovies = searchMovies;
 module.exports.details = details;
+module.exports.movieDetails = movieDetails;
 module.exports.episode = episode;

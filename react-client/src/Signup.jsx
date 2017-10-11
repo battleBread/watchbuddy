@@ -6,13 +6,13 @@ class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      username: '',
       password: ''
     }
   }
 
-  handleEmailChange(e) {
-    this.setState({ email: e.target.value });
+  handleUsernameChange(e) {
+    this.setState({ username: e.target.value });
   }
 
   handlePasswordChange(e) {
@@ -20,11 +20,12 @@ class Signup extends Component {
   }
 
   handleSubmit() {
+    const { username, password } = this.state;
     $.ajax({
       url: '/signup',
       method: 'POST',
       contentType: 'application/json',
-      data: JSON.stringify({email: this.state.email, password: this.state.password}),
+      data: JSON.stringify({ username, password }),
       success: (data) => {
         this.props.getUsername(data);
         this.props.changeView('UserHome');
@@ -60,7 +61,7 @@ class Signup extends Component {
             <Form size='large'>
               <Segment stacked>
                 <Form.Input
-                  onChange = { this.handleEmailChange.bind(this) }
+                  onChange = { this.handleUsernameChange.bind(this) }
                   fluid
                   icon = 'user'
                   iconPosition = 'left'

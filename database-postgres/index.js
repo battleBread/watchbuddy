@@ -11,6 +11,7 @@ const User = sequelize.define('user', userSchema);
 
 User.sync();
 
+<<<<<<< HEAD
 module.exports = {
   User
 };
@@ -43,3 +44,13 @@ module.exports = {
  *   - (may need to run: $ brew services stop postgresql followed by $ brew services start postgresql to log all users off 'watchpotato')
  *   - dropdb cheapeats
  */
+=======
+// User
+//   .sync({force:true})
+//   .then(() => User.create({
+//     username: '3',
+//     phone: '8675309',
+//   }))
+//   .then(() => User.findAll())
+//   .then(users => console.log(users));
+>>>>>>> Tests Postgres functionality

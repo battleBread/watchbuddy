@@ -9,6 +9,7 @@ const routes = require('./routeHelpers/index.js');
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.get('/recommend', routes.recommend);

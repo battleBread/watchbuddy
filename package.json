@@ -1,7 +1,7 @@
 {
-  "name": "watchbuddy",
+  "name": "watchpotato",
   "version": "1.0.0",
-  "description": "",
+  "description": "watchbuddy 2.0",
   "main": "index.js",
   "scripts": {
     "react-dev": "webpack -d --watch",
@@ -9,7 +9,7 @@
     "start": "node server/index.js",
     "update": "git pull upstream master && npm install"
   },
-  "author": "Beth Johnson",
+  "author": "Team BattleBread",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.23.1",

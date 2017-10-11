@@ -44,7 +44,7 @@ class App extends React.Component {
     this.setState({ showSelected: 'true' });
   }
 
-  getShow(showIdAndName) {
+  getShow(showIdAndName) { //may need to make a getMovie ajax request
     let showId = showIdAndName.id;
     let showName = showIdAndName.name;
     this.setState({ showId, showName, showSelected: 'true' })

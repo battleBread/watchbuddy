@@ -14,7 +14,14 @@ class ShowList extends Component {
         image: '',
         summary: 'Default summary'
       }],
+      movieList: [{
+        firstAirDate: '2000-01-01',
+        genres: ['Daniel'],
+        image: '',
+        summary: 'Default summary'
+      }],
       addedShowEpisodes: [],
+      addedMovies: [],
       showSelected: 'false'
     };
   }
@@ -25,7 +32,7 @@ class ShowList extends Component {
       url: '/recommend',
       method: 'GET',
       contentType: 'application/json',
-      success: data => this.setState({ showList: data, loaded: 'true' })
+      success: data => this.setState({ showList: data.tv, movieList: data.movie, loaded: 'true' })
     });
   }
 
@@ -45,7 +52,7 @@ class ShowList extends Component {
     : <div> { this.state.loaded === 'true' 
         ? <Segment inverted>
             <Grid celled>
-              { this.state.showList.map((show, i) => <ShowEntry show={show} key={i} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow}/>) }
+              { this.state.showList.map((show, i) => <ShowEntry show={show} key={i} movie={this.state.movieList[i]} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow}/>) }
             </Grid>
           </Segment> 
       : <Segment>

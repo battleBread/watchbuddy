@@ -11,7 +11,7 @@ class ShowEntry extends Component {
         <Grid.Column width={3}>
           <Container>
           <Image src={this.props.show.image} size='huge' verticalAlign='middle'/>
-          { this.props.loggedIn === 'true' && 
+          { this.props.loggedIn === 'true' && this.props.isTVShow ? 
             <Button 
               fluid icon size='big' 
               inverted color='red' 
@@ -23,7 +23,19 @@ class ShowEntry extends Component {
                 this.props.getShow(showObj);
               }}>
               Add show <Icon name='add to calendar'/>
-            </Button> }
+            </Button> 
+          : <Button 
+              fluid icon size='big' 
+              inverted color='red' 
+              onClick={() => {
+                this.props.addShow();
+                let showObj = {};
+                showObj.id = this.props.show.id;
+                showObj.name = this.props.show.name;
+                this.props.getShow(showObj);
+              }}>
+              Add movie <Icon name='add to calendar'/>
+            </Button>}
           </Container>
         </Grid.Column>
 

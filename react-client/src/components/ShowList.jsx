@@ -52,8 +52,8 @@ class ShowList extends Component {
       </Segment> 
     : <div> { this.state.loaded === 'true' 
         ? <Segment inverted>
-            <MovieTvTab showList={this.state.showList} movieList={this.state.movieList}>
-              { this.state.showList.map((show, i) => <ShowEntry show={show} key={i} movie={this.state.movieList[i]} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow}/>) }
+            <MovieTvTab showList={this.state.showList} movieList={this.state.movieList} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow}>
+              
             </MovieTvTab>
           </Segment> 
       : <Segment>

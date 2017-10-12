@@ -48,7 +48,7 @@ class ShowEntry extends Component {
           <p></p>
           <li>{this.props.show.summary}</li>
           <p></p>
-          <li>First aired: {this.props.show.firstAirDate}</li>
+          <li>{this.props.isTVShow ? 'First aired: ' : 'Released: '} {this.props.show.firstAirDate}</li>
         </ul>
       </Grid.Column>
     </Grid.Row>)

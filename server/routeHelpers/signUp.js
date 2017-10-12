@@ -3,14 +3,20 @@ const utils = require('../hashUtils.js');
 const { User } = require('../../database-postgres');
 
 //This function will create a new row for the users table for new users.
-module.exports = (req, res) => {
+module.exports = ({ body: { 
+  username, 
+  password,
+  phone,
+  avatarUrl,
+}}, res) => {
   //TODO: refactor to new DB schema
-  const { 
-    username, 
-    password,
-    phone,
-    avatarUrl,
-  } = req.body;
+  // const { 
+  //   username, 
+  //   password,
+  //   phone,
+  //   avatarUrl,
+  // } = req.body;
+  console.log('RECEIVED', username, password, phone, avatarUrl);
   const salt = utils.createRandom32String(); // create salt
   const pw = utils.createHash(password, salt);
   const array = [username, pw, salt];

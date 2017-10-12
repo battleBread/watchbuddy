@@ -30,7 +30,7 @@ class Signup extends Component {
   }
 
   handleSubmit() {
-    const { username, password } = this.state;
+    const { username, password, phone, avatarUrl } = this.state;
     $.ajax({
       url: '/signup',
       method: 'POST',

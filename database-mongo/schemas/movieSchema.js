@@ -5,6 +5,12 @@ module.exports = Schema({
     type: String,
     required: true,
   },
-  start: Date,
-  end: Date,
+  movieDB: Number,
+  rating: {
+    type: Number,
+    min: 1,
+    max: 5
+  },
+  review: String,
+  runtime: Number,
 });

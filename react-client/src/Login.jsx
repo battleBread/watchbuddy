@@ -6,15 +6,15 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      username: '',
       password: '',
       renderErrorMessage: 'false'
     }
   }
 
-  handleEmailChange(e) {
+  handleUsernameChange(e) {
     this.setState({
-      email: e.target.value
+      username: e.target.value
     });
   }
 
@@ -29,7 +29,7 @@ class Login extends Component {
       url: '/login',
       method: 'POST',
       contentType: 'application/json',
-      data: JSON.stringify({email: this.state.email, password: this.state.password}),
+      data: JSON.stringify({username: this.state.username, password: this.state.password}),
       success: (data) => this.postLogin(data),
       error: () => this.renderErrorMessage()
     });
@@ -76,7 +76,7 @@ class Login extends Component {
             <Form size='large'>
               <Segment stacked>
                 <Form.Input
-                  onChange={this.handleEmailChange.bind(this)}
+                  onChange={this.handleUsernameChange.bind(this)}
                   fluid
                   icon='user'
                   iconPosition='left'

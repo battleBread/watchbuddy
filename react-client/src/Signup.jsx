@@ -7,7 +7,9 @@ class Signup extends Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      phone: '',
+      avatarUrl: '',
     }
   }
 
@@ -19,13 +21,26 @@ class Signup extends Component {
     this.setState({ password: e.target.value });
   }
 
+  handlePhoneChange(e) {
+    this.setState({ phone: e.target.value });
+  }
+
+  handleAvatarUrlChange(e) {
+    this.setState({ avatarUrl: e.target.value });
+  }
+
   handleSubmit() {
     const { username, password } = this.state;
     $.ajax({
       url: '/signup',
       method: 'POST',
       contentType: 'application/json',
-      data: JSON.stringify({ username, password }),
+      data: JSON.stringify({ 
+        username,
+        password,
+        phone,
+        avatarUrl,
+      }),
       success: (data) => {
         this.props.getUsername(data);
         this.props.changeView('UserHome');
@@ -74,6 +89,20 @@ class Signup extends Component {
                   iconPosition = 'left'
                   placeholder = 'Password'
                   type = 'password'
+                />
+                <Form.Input 
+                  onChange = { this.handlePhoneChange.bind(this) }
+                  fluid
+                  icon = 'lock'
+                  iconPosition = 'left'
+                  placeholder = 'Phone # (optional)'
+                />
+                <Form.Input 
+                  onChange = { this.handleAvatarUrlChange.bind(this) }
+                  fluid
+                  icon = 'lock'
+                  iconPosition = 'left'
+                  placeholder = 'Link to profile image (optional)'
                 />
                 <Button 
                   color = 'red'

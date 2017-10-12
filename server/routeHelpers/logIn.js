@@ -3,9 +3,8 @@ const utils = require('../hashUtils.js');
 const { User } = require('../../database-postgres');
 
 //This function will check whether the password matches for that user.
-module.exports = (req, res) => {
-  const { username, password } = req.body;
-  console.log('RECEIVED: ', username, password, req.body);
+module.exports = ({ body: { username, password }}, res) => {
+  console.log('RECEIVED: ', username, password);
   const array = [username];
 
   // db.checkUser(array, (data) => {
@@ -21,10 +20,7 @@ module.exports = (req, res) => {
   // });
 
   User.findOne({ where: { username }})
-    .then((response) => {
-      console.log('DATA: ', response.dataValues);
-      const { username, salt } = response.dataValues;
-      const pwHash = response.dataValues.password;
+    .then(({ dataValues: { username, salt, password: pwHash }}) => {
       console.log('HASH MATCH', utils.compareHash(password, pwHash, salt));
       if (utils.compareHash(password, pwHash, salt)) {
         res.send(username);

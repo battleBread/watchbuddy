@@ -24,7 +24,8 @@ class ShowEntry extends Component {
               }}>
               Add show <Icon name='add to calendar'/>
             </Button> 
-          : <Button 
+          : this.props.loggedIn === 'true' ? 
+            <Button 
               fluid icon size='big' 
               inverted color='red' 
               onClick={() => {
@@ -35,7 +36,8 @@ class ShowEntry extends Component {
                 this.props.getShow(showObj);
               }}>
               Add movie <Icon name='add to calendar'/>
-            </Button>}
+            </Button>  
+            : null}
           </Container>
         </Grid.Column>
 

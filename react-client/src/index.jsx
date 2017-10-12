@@ -4,6 +4,7 @@ import Login from './Login.jsx';
 import Signup from './Signup.jsx';
 import Home from './Home.jsx';
 import UserHome from './UserHome.jsx';
+import Profile from './Profile.jsx';
 import DisplaySchedule from './DisplaySchedule.jsx';
 import Calendar from './Calendar.jsx'
 import $ from 'jquery';
@@ -140,6 +141,10 @@ class App extends React.Component {
         changeView = { this.changeView.bind(this) } 
         username = { this.state.username } 
         changeView = { this.changeView.bind(this) }
+      />
+    } else if (this.state.view === 'Profile') {
+      return <Profile
+        changeView = { this.changeView.bind(this) } 
       />
     } else if (this.state.view === 'Home') {
       return <Home 

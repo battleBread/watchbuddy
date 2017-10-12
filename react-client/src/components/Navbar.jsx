@@ -35,6 +35,11 @@ class Navbar extends Component {
     });
   }
 
+  goToProfilePage() {
+    console.log('profile clicked');
+    this.props.changeView('Profile');
+  }
+
   render () {
     return (
 
@@ -43,7 +48,7 @@ class Navbar extends Component {
         <Menu.Item>
           <h2><Icon name = 'film' /> <Icon name = 'child' /> WatchPotato</h2>
         </Menu.Item>
-
+        <Button icon color ='blue' onClick={this.goToProfilePage.bind(this)}> Go to Profile </Button>
         <Menu.Menu position = 'right'>
           <Menu.Item>
           

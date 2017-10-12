@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ShowList from './components/ShowList.jsx';
 import Navbar from './components/Navbar.jsx';
 import AddShow from './components/AddShow.jsx';
-import { Container, Header, Icon, Message, Transition } from 'semantic-ui-react'
+import { Container, Header, Icon, Message, Transition, Button } from 'semantic-ui-react'
 
 class UserHome extends Component {
   constructor(props) {
@@ -36,6 +36,8 @@ class UserHome extends Component {
               </Message.Header>
               <p>We see you haven't added a TV show yet. Search for your favorite TV show and click the calendar icon to add it to your watch list!</p>
             </Message>
+
+            <Button onClick={()=>{this.props.changeView('Calendar')}}><Icon name='calendar'/>VIEW CALENDAR</Button>
 
             <ShowList 
               getShow = { this.props.getShow } 

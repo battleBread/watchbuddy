@@ -25,16 +25,16 @@ class MovieTvTab extends Component {
           <Menu.Item name='movies' active={activeItem === 'movies'} onClick={this.handleItemClick} />
         </Menu>
         <div> {activeItem === 'TV'
-          ? <Segment attached='bottom' inverted>
+          ? 
               <Grid celled>
                 { this.props.showList.map((show, i) => <ShowEntry show={show} key={i} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow} isTVShow={true}/>) }
               </Grid>
-            </Segment>
-          : <Segment attached='bottom' inverted>
+            
+          : 
               <Grid celled>
                 { this.props.movieList.map((show, i) => <ShowEntry show={show} key={i} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow} isTVShow={false}/>) }
               </Grid>
-            </Segment>}
+            }
         </div>
       </div>
     )

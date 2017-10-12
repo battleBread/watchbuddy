@@ -52,9 +52,7 @@ class ShowList extends Component {
       </Segment> 
     : <div> { this.state.loaded === 'true' 
         ? <Segment inverted>
-            <MovieTvTab showList={this.state.showList} movieList={this.state.movieList} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow}>
-              
-            </MovieTvTab>
+            <MovieTvTab showList={this.state.showList} movieList={this.state.movieList} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow} />
           </Segment> 
       : <Segment>
           <Dimmer active>

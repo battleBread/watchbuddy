@@ -43,8 +43,10 @@ class UserHome extends Component {
               <p>We see you haven't added a TV show yet. Search for your favorite TV show and click the calendar icon to add it to your watch list!</p>
             </Message>
 
+            <div>
             <Button onClick={()=>{this.props.changeView('Calendar')}}><Icon name='calendar'/>VIEW CALENDAR</Button>
-
+            </div>
+            
             <ShowList 
               getShow = { this.props.getShow } 
               getMovie = {this.props.getMovie }

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { eventSchema, showSchema } = require('./schema');
+const { eventSchema, showSchema } = require('./schemas');
 
 mongoose.connect('mongodb://localhost/watchpotato');
 

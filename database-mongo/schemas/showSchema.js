@@ -1,12 +1,6 @@
-const mongoose = require('mongoose');
+const { Schema } = require('mongoose');
 
-const eventSchema = mongoose.Schema({
-  title: String,
-  start: Date,
-  end: Date,
-});
-
-const showSchema = mongoose.Schema({
+module.exports = Schema({
   title: String,
   movieDB: Number,
   rating: {
@@ -27,12 +21,3 @@ const showSchema = mongoose.Schema({
     runtime: Number,
   }],
 });
-
-// const movieSchema = mongoose.Schema({
-
-// });
-
-module.exports = {
-  eventSchema,
-  showSchema,
-};

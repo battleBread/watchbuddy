@@ -3,7 +3,6 @@ const utils = require('../hashUtils.js');
 const { User } = require('../../database-postgres');
 
 //This function will create a new row for the users table for new users.
-<<<<<<< HEAD
 module.exports = ({ body: { 
   username, 
   password,

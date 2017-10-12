@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import { Button, Image, List, Segment, Icon, Loader, Dimmer, Grid, Container } from 'semantic-ui-react'
+import { Button, Image, List, Segment, Icon, Loader, Dimmer, Grid, Container, Tab } from 'semantic-ui-react'
 import ShowEntry from './ShowEntry.jsx';
+import MovieTvTab from './MovieTvTab.jsx';
 
 class ShowList extends Component {
   constructor(props) {
@@ -51,9 +52,9 @@ class ShowList extends Component {
       </Segment> 
     : <div> { this.state.loaded === 'true' 
         ? <Segment inverted>
-            <Grid celled>
+            <MovieTvTab showList={this.state.showList} movieList={this.state.movieList}>
               { this.state.showList.map((show, i) => <ShowEntry show={show} key={i} movie={this.state.movieList[i]} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow}/>) }
-            </Grid>
+            </MovieTvTab>
           </Segment> 
       : <Segment>
           <Dimmer active>

@@ -20,12 +20,6 @@ app.post('/:route', (req, res) => {
 	routes[req.params.route](req, res);
 });
 
-<<<<<<< HEAD
-// app.post('/update', function (req, res) {
-
-// })
-
-
 app.listen(process.env.PORT || 3000, ()  => {
   console.log(`listening on port ${3000}!`);
 })
@@ -45,3 +39,8 @@ app.listen(process.env.PORT || 3000, ()  => {
   console.log(`listening on port ${3000}!`);
 });
 >>>>>>> Skeletons postgres db model
+=======
+app.listen(process.env.PORT || 3000, ()  => {
+  console.log(`listening on port ${3000}!`);
+});
+>>>>>>> 6f614adcdedf05d599045226ce52802c4e4b6504

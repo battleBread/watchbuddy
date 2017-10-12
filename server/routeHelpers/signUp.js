@@ -18,15 +18,10 @@ module.exports = ({ body: {
   //   avatarUrl,
   // } = req.body;
   console.log('RECEIVED', username, password, phone, avatarUrl);
-=======
-module.exports = (req, res) => {
-  const { username, password } = req.body;
->>>>>>> Refactors Signup component to use same variable names as server
   const salt = utils.createRandom32String(); // create salt
   const pw = utils.createHash(password, salt);
   const array = [username, pw, salt];
 
-<<<<<<< HEAD
   User.create(({
     username,
     phone,
@@ -40,9 +35,8 @@ module.exports = (req, res) => {
   // db.createUser(array, (data) => {
   //    res.send(username);
   // });
-=======
+
   db.createUser(array, (data) => {
      res.send(username);
   });
->>>>>>> Refactors Signup component to use same variable names as server
 }

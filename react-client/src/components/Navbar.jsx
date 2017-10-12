@@ -41,7 +41,7 @@ class Navbar extends Component {
       <Menu className = "ui inverted menu" inverted color='red'>
 
         <Menu.Item>
-          <h2><Icon name = 'film' /> <Icon name = 'child' /> WatchBuddy</h2>
+          <h2><Icon name = 'film' /> <Icon name = 'child' /> WatchPotato</h2>
         </Menu.Item>
 
         <Menu.Menu position = 'right'>

@@ -5,6 +5,7 @@ import Signup from './Signup.jsx';
 import Home from './Home.jsx';
 import UserHome from './UserHome.jsx';
 import DisplaySchedule from './DisplaySchedule.jsx';
+import Calendar from './Calendar.jsx'
 import $ from 'jquery';
 
 
@@ -101,6 +102,13 @@ class App extends React.Component {
         getShow = { this.getShow.bind(this) }
         showName = { this.state.showName }
         PostAddShowData = { this.state.PostAddShowData }
+      />
+    } else if (this.state.view === 'Calendar') {
+      return <Calendar 
+        loggedIn = 'true' 
+        changeView = { this.changeView.bind(this) } 
+        username = { this.state.username } 
+        changeView = { this.changeView.bind(this) }
       />
     } else if (this.state.view === 'Home') {
       return <Home 

@@ -13,7 +13,10 @@ class UserHome extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ showId: nextProps.showId });
+    this.setState({ 
+      showId: nextProps.showId,
+      showSelected: nextProps.showSelected
+    });
   }
 
   render () {
@@ -48,7 +51,7 @@ class UserHome extends Component {
               addShow = { this.props.addShow }
               showSelected = { this.props.showSelected }
             />
-
+            {this.state.showSelected === 'true' ?
             <AddShow
               showId = { this.props.showId } 
               showName = { this.props.showName }
@@ -57,6 +60,7 @@ class UserHome extends Component {
               changeView = { this.props.changeView }
               getPostAddShowData = { this.props.getPostAddShowData }
             />
+            : null}
             </div>
             </Container>
           </div>

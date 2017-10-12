@@ -20,6 +20,8 @@ class ShowEntry extends Component {
                 let showObj = {};
                 showObj.id = this.props.show.id;
                 showObj.name = this.props.show.name;
+                showObj.isTVShow = this.props.isTVShow;
+                console.log(showObj);
                 this.props.getShow(showObj);
               }}>
               Add show <Icon name='add to calendar'/>
@@ -33,7 +35,9 @@ class ShowEntry extends Component {
                 let showObj = {};
                 showObj.id = this.props.show.id;
                 showObj.name = this.props.show.name;
-                this.props.getShow(showObj);
+                showObj.isTVShow = this.props.isTVShow;
+                console.log(showObj);
+                // this.props.getShow(showObj); //currently not working
               }}>
               Add movie <Icon name='add to calendar'/>
             </Button>  

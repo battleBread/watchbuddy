@@ -6,25 +6,41 @@ class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      username: '',
+      password: '',
+      phone: '',
+      avatarUrl: '',
     }
   }
 
-  handleEmailChange(e) {
-    this.setState({ email: e.target.value });
+  handleUsernameChange(e) {
+    this.setState({ username: e.target.value });
   }
 
   handlePasswordChange(e) {
     this.setState({ password: e.target.value });
   }
 
+  handlePhoneChange(e) {
+    this.setState({ phone: e.target.value });
+  }
+
+  handleAvatarUrlChange(e) {
+    this.setState({ avatarUrl: e.target.value });
+  }
+
   handleSubmit() {
+    const { username, password, phone, avatarUrl } = this.state;
     $.ajax({
       url: '/signup',
       method: 'POST',
       contentType: 'application/json',
-      data: JSON.stringify({email: this.state.email, password: this.state.password}),
+      data: JSON.stringify({ 
+        username,
+        password,
+        phone,
+        avatarUrl,
+      }),
       success: (data) => {
         this.props.getUsername(data);
         this.props.changeView('UserHome');
@@ -60,7 +76,7 @@ class Signup extends Component {
             <Form size='large'>
               <Segment stacked>
                 <Form.Input
-                  onChange = { this.handleEmailChange.bind(this) }
+                  onChange = { this.handleUsernameChange.bind(this) }
                   fluid
                   icon = 'user'
                   iconPosition = 'left'
@@ -73,6 +89,20 @@ class Signup extends Component {
                   iconPosition = 'left'
                   placeholder = 'Password'
                   type = 'password'
+                />
+                <Form.Input 
+                  onChange = { this.handlePhoneChange.bind(this) }
+                  fluid
+                  icon = 'lock'
+                  iconPosition = 'left'
+                  placeholder = 'Phone # (optional)'
+                />
+                <Form.Input 
+                  onChange = { this.handleAvatarUrlChange.bind(this) }
+                  fluid
+                  icon = 'lock'
+                  iconPosition = 'left'
+                  placeholder = 'Link to profile image (optional)'
                 />
                 <Button 
                   color = 'red'

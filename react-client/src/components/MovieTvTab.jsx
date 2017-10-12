@@ -20,21 +20,17 @@ class MovieTvTab extends Component {
 
     return (
       <div>
-        <Menu tabular>
+        <Menu pointing secondary inverted>
           <Menu.Item name='TV' active={activeItem === 'TV'} onClick={this.handleItemClick}></Menu.Item>
           <Menu.Item name='movies' active={activeItem === 'movies'} onClick={this.handleItemClick} />
         </Menu>
         <div> {activeItem === 'TV'
-          ? 
-              <Grid celled>
-                { this.props.showList.map((show, i) => <ShowEntry show={show} key={i} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow} isTVShow={true}/>) }
-              </Grid>
-            
-          : 
-              <Grid celled>
-                { this.props.movieList.map((show, i) => <ShowEntry show={show} key={i} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow} isTVShow={false}/>) }
-              </Grid>
-            }
+          ? <Grid celled>
+              { this.props.showList.map((show, i) => <ShowEntry show={show} key={i} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow} isTVShow={true}/>) }
+            </Grid>
+          : <Grid celled>
+              { this.props.movieList.map((show, i) => <ShowEntry show={show} key={i} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow} isTVShow={false}/>) }
+            </Grid>}
         </div>
       </div>
     )

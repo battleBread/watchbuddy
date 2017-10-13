@@ -16,13 +16,17 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 
 
 app.get('/user/:username', (req, res) => {
-	routes.user.GET(req, res, req.params.username);
+	routes.user.GET(req, res);
 });
 
 app.get('/:route', (req, res) => {
 	console.log('GET to: ', req.params.route);
 	routes[req.params.route].GET(req, res);
-})
+});
+
+app.post('/user/:username', (req, res) => {
+	routes.user.POST(req, res);
+});
 
 app.post('/:route', (req, res) => {
 	console.log('POST to: ', req.params.route);

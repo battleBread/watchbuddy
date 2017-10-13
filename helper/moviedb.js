@@ -110,9 +110,15 @@ let search = (title, callback) => {
 			'User-Agent': 'request'
 		}
 	}
-	request(options, (err, res, body) => {
-		callback(body)
-	})
+	return new Promise(function(resolve, reject) {
+    request(options, (err, res, body) => {
+      if(err) {
+        reject(err)
+      } else {
+        resolve(body);
+      }
+    })   
+  })
 }
 
 let searchMovies = (title, callback) => {
@@ -122,8 +128,14 @@ let searchMovies = (title, callback) => {
       'User-Agent': 'request'
     }
   }
-  request(options, (err, res, body) => {
-    callback(body)
+  return new Promise(function(resolve, reject) {
+    request(options, (err, res, body) => {
+      if(err) {
+        reject(err)
+      } else {
+        resolve(body);
+      }
+    })   
   })
 }
 

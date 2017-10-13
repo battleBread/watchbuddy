@@ -38,7 +38,7 @@ class Home extends Component {
             </Header>
           </div>
         </Transition>
-      <ShowList showList={this.props.showList}/>
+      <ShowList showList={this.props.showList} movieList={this.props.movieList} />
     </Container>);
   }
 }

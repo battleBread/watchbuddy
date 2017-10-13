@@ -21,6 +21,12 @@ class App extends React.Component {
         image: '',
         summary: 'Default summary'
       }],
+      movieList: [{
+        firstAirDate: '2000-01-01',
+        genres: ['Daniel'],
+        image: '',
+        summary: 'Default summary'
+      }],
       showSelected: 'false',
       showId: '',
       showName: '',
@@ -40,7 +46,7 @@ class App extends React.Component {
   }
 
   getShowList(data){
-    this.setState({ showList: data })
+    this.setState({ showList: data.tv, movieList: data.movie })
   }
 
   addShow() {
@@ -102,6 +108,7 @@ class App extends React.Component {
         username = { this.state.username } 
         getShowList= { this.getShowList.bind(this) } 
         showList = { this.state.showList }
+        movieList = { this.state.movieList }
         addShow = { this.addShow.bind(this) }
         showSelected = { this.state.showSelected }
         changeView = { this.changeView.bind(this) }
@@ -119,6 +126,7 @@ class App extends React.Component {
         username = { this.state.username } 
         getShowList= { this.getShowList.bind(this) } 
         showList = { this.state.showList }
+        movieList = { this.state.movieList }
         addShow = { this.addShow.bind(this) }
         showSelected = { this.state.showSelected }
         changeView = { this.changeView.bind(this) }
@@ -138,6 +146,7 @@ class App extends React.Component {
         changeView = { this.changeView.bind(this) } 
         getShowList = { this.getShowList.bind(this) } 
         showList = { this.state.showList }
+        movieList = { this.state.movieList }
       />
     }
   }

@@ -34,6 +34,7 @@ class newCalendar extends Component {
     this.listUpcomingEvents = this.listUpcomingEvents.bind(this);
     this.authorizeButton = document.getElementById('authorize-button');
     this.signoutButton = document.getElementById('signout-button');
+    this.setState = this.setState.bind(this);
   }
 
   handleClientLoad() {
@@ -92,32 +93,35 @@ class newCalendar extends Component {
 
   listUpcomingEvents() {
     var append = this.appendPre;
+    var state = this.state
+    var setState = this.setState;
+    var oldEvents = this.state.myEventsList;
     gapi.client.calendar.events.list({
       'calendarId': 'primary',
       'timeMin': (new Date()).toISOString(),
       'showDeleted': false,
       'singleEvents': true,
-      'maxResults': 10,
+      'maxResults': 20,
       'orderBy': 'startTime'
     }).then(function(response) {
       var events = response.result.items;
-      append('Upcoming events:');
-
-      if (events.length > 0) {
-        for (var i = 0; i < events.length; i++) {
-          var event = events[i];
-          var when = event.start.dateTime;
-          if (!when) {
-            when = event.start.date;
-          }
-          append(event.summary + ' (' + when + ')')
+      var setEvents =  events.map((item) => (
+        {
+          'title': item.summary,
+          'start': item.start.dateTime,
+          'end': item.end.dateTime,
         }
-      } else {
-        append('No upcoming events found.');
-      }
+      ))
+
+      var combinedEvents = oldEvents.concat(setEvents);
+      setState(
+        {
+          myEventsList: combinedEvents,
+        }
+      ); 
     });
   }
-  
+
   componentDidMount(){
     this.handleClientLoad();
   }

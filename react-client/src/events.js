@@ -22,13 +22,11 @@ const events = [
     },
     {
         'title': 'Jessica Jones',
-        'allDay': true,
         'start': new Date(2017, 9, 10),
         'end': new Date(2017, 9, 11)
     },
     {
         'title': 'Jessica Jones',
-        'allDay': true,
         'start': new Date(2017, 9, 11),
         'end': new Date(2017, 9, 12)
     },

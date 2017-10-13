@@ -10,23 +10,11 @@ class AddMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showId: this.props.showId,
+      movieId: this.props.movieId,
       startDate: moment(),
       endDate: moment(),
       startDatejs: '',
       endDatejs: '',
-      seasonOptions: [
-        {
-          text: 'Season 1',
-          value: 'Default value'
-        }
-      ],
-      episodeOptions: [
-        {
-          text: 'Episode 1',
-          value: 'Default value'
-        }
-      ],
       hourOptions: [
         {text: 1, value: 1},
         {text: 2, value: 2},
@@ -38,9 +26,6 @@ class AddMovie extends Component {
         {text: 8, value: 8},
         {text: 9, value: 9},
       ],
-      originalSeasonObj: {},
-      selectedSeason: '',
-      selectedEpisode: '',
       selectedHour: 0,
       monday: 0,
       tuesday: 0,
@@ -53,41 +38,21 @@ class AddMovie extends Component {
     };
   }
 
-  componentWillReceiveProps(episodes) {
-    //handle username
-    this.setState({ username: episodes.username });
-
-    //handle showId
-    this.setState({ showId: episodes.showId });
-
-    //handle show info
-    //addedShowEpisodes is an object where each key has an array with elements:
-      //[0] = number of episodes
-      //[1] = season poster
-    let seasonsObj = episodes.addedShowEpisodes.seasons;
-    this.setState({originalSeasonObj: seasonsObj});
-    let seasonArr = [];
-    let episodeArr = [];
-    _.each(seasonsObj, (value, key, index) => {
-      seasonArr.push({value: key, text: key, image: value[1]});
-      episodeArr.push({key: key, value: value[0], text: value[0]});
-    });
-    this.setState({seasonOptions: seasonArr});
-    this.setState({episodeOptions: episodeArr});
+  componentWillReceiveProps(nextProps) {
+    this.setState({ username: nextProps.username });
+    this.setState({ movieId: nextProps.movieId });
   }
 
   handleSubmit() {
     //make ajax call to add with all info
     $.ajax({
       method: 'POST',
-      url: '/addshow',
+      url: '/addshow', //need to change endpoint
       contentType: 'application/json',
       data: JSON.stringify({
         username: this.state.username,
-        showId: this.state.showId,
-        showName: this.props.showName,
-        season: this.state.selectedSeason,
-        episode: this.state.selectedEpisode,
+        movieId: this.state.movieId,
+        movieName: this.props.movieName,
         startDate: this.state.startDatejs,
         endDate: this.state.endDatejs,
         monday: this.state.monday,
@@ -100,13 +65,13 @@ class AddMovie extends Component {
         hours: this.state.selectedHour
       }),
       success: data => {
-        this.props.getPostAddShowData(data);
+        this.props.getPostAddShowData(data); //change function?
         this.props.changeView('DisplaySchedule');
       }
     });
   }
 
-  handleDay(day){
+  handleDay(day) {
     let setObj = {};
     if (this.state[day] === 0) {
       setObj[day] = 1;
@@ -117,35 +82,7 @@ class AddMovie extends Component {
     }
   }
 
-  handleSelectedSeason(event, { value }) {
-    let valueNum = parseInt(value);
-    this.setState({ selectedSeason: valueNum });
-
-    //grab selected season
-    let selectedValue = value;
-    let episodeNum = 0;
-
-    //get the corresponding num of episodes for the selected season
-    _.each(this.state.originalSeasonObj, (value, key) => {
-        if (key === selectedValue) {
-          episodeNum = value[0];
-        }
-    });
-
-    //populate episodeOptions with array of episodes
-    let newEpisodeArr = [];
-    _.times(episodeNum, (index) => {
-      let epObj = {};
-      epObj.text = index + 1;
-      epObj.value = index + 1;
-      newEpisodeArr.push(epObj);
-    });
-    this.setState({ episodeOptions: newEpisodeArr });
-  }
-
-  handleSelectedEpisode(event, { value }) {
-    this.setState({ selectedEpisode: value })
-  }
+  
 
   handleSelectedHour(event, { value }) {
     this.setState({ selectedHour: value })
@@ -184,30 +121,11 @@ class AddMovie extends Component {
         </style>
         <Form>
           <Header as='h4' textAlign='left' inverted color='red'>
-            Where did you leave off?
+            Schedule a time:
           </Header>
 
-          <Form.Field>
-            <label>Season</label>
-            <Dropdown 
-              placeholder='Select season' 
-              fluid selection 
-              options={this.state.seasonOptions} 
-              onChange={this.handleSelectedSeason.bind(this)} 
-              value={currentValues}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Episode</label>
-            <Dropdown 
-              placeholder='Select episode' 
-              fluid selection 
-              options = { this.state.episodeOptions } 
-              onChange = { this.handleSelectedEpisode.bind(this)} 
-              image = { currentValues }
-              value = { currentValues }
-            />
-          </Form.Field>
+
+
 
           <Form.Group widths='equal'>
             <Form.Field>

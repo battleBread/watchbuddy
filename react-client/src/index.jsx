@@ -67,7 +67,7 @@ class App extends React.Component {
     let movieId = movieIdAndName.id;
     let movieName = movieIdAndName.name;
     let isTVShow = movieIdAndName.isTVShow;
-    this.setState({ movieId, movieName, isTVShow: isTVShow, showSelected: 'true' })
+    this.setState({ showId: movieId, showName: movieName, isTVShow: isTVShow, showSelected: 'true' })
     $.ajax({
       url: '/addmovie',
       method: 'POST',

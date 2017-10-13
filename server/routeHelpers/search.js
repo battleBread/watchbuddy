@@ -29,6 +29,6 @@ module.exports = (req, res) => {
 				});
 			});
 			res.send(array);
-		})
+		}) //end of .search
 	})
 }

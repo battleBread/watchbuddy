@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar.jsx';
-import { Container, Header, Icon, Message, Transition } from 'semantic-ui-react';
+import { Container, Header, Icon, Message, Transition, Button } from 'semantic-ui-react';
 import BigCalendar from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
-import events from './events.js'
+import events from './events.js';
+import keys from '../../config.js';
 
-/////////////////// INSERT ALL VARIABLES HERE ///////////////////
-var CLIENT_ID = '36715810384-o7sedl5mq1ev11fhbjcjt5oacep7jek9.apps.googleusercontent.com';
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
-const API_KEY = 'AIzaSyAOuDzSlG24RPBn3OKVAyjW3OK_EJhCUbp';
 var onload="this.onload=function(){};handleClientLoad()";
 var onreadystatechange="if (this.readyState === 'complete') this.onload()";
-// var authorizeButton = document.getElementById('authorizeButton');
-// console.log(authorizeButton)
-// var signoutButton = document.getElementById('signoutButton');
-var authorize = {display: 'block'};
+var authorize = {display: 'none'};
 var signout = {display: 'none'};
 
 BigCalendar.momentLocalizer(moment);
@@ -54,7 +49,7 @@ class newCalendar extends Component {
 
     gapi.client.init({
       discoveryDocs: DISCOVERY_DOCS,
-      clientId: CLIENT_ID,
+      clientId: keys.CLIENT_ID,
       scope: SCOPES
     }).then(function () {
         // Listen for sign-in state changes.
@@ -122,14 +117,12 @@ class newCalendar extends Component {
       }
     });
   }
-
+  
   componentDidMount(){
     this.handleClientLoad();
   }
 
   render () {
-    // let authButton = <button id="authorize-button" onClick={this.handleAuthClick}>Authorize</button>
-    // let signOutButton = <button id="signout-button" onClick={this.handleSignoutClick}>Sign Out</button>
     return (<Transition animation='fade up' duration={1000} transitionOnMount={true}>
       <div>
       <Navbar
@@ -143,8 +136,12 @@ class newCalendar extends Component {
             <Icon name='calendar'/> Your Calendar
           </Header>
           <Container>
-            <button id="authorize-button" style={authorize} onClick={this.handleAuthClick}>Authorize</button>
-            <button id="signout-button" style={signout}>Sign Out</button>
+            <Button color='red' id="authorize-button" style={authorize} onClick={this.handleAuthClick}>
+              Connect your Google Calendar
+            </Button>
+            <Button color='red' id="signout-button" style={authorize} onClick={this.handleAuthClick}>
+              Sign Out
+            </Button>
             <pre id="content"></pre>
           </Container>
           <BigCalendar

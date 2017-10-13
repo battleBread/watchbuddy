@@ -1,24 +1,46 @@
 const events = [
     {
-        'title': 'All Day Event',
+        'title': 'The Office',
         'allDay': true,
-        'start': new Date(2017, 9, 0),
-        'end': new Date(2017, 9, 1)
+        'start': new Date(2017, 9, 1),
+        'end': new Date(2017, 9, 2)
     },
     {
-        'title': 'Long Event',
-        'start': new Date(2017, 9, 7),
-        'end': new Date(2017, 9, 10)
+        'title': 'The Office',
+        'start': new Date(2017, 9, 2),
+        'end': new Date(2017, 9, 3)
     },
     {
-        'title': 'DTS STARTS',
+        'title': 'The Office',
+        'start': new Date(2017, 9, 3),
+        'end': new Date(2017, 9, 4)
+    },
+    {
+        'title': 'The Office',
+        'start': new Date(2017, 9, 4),
+        'end': new Date(2017, 9, 5)
+    },
+    {
+        'title': 'Jessica Jones',
+        'allDay': true,
+        'start': new Date(2017, 9, 10),
+        'end': new Date(2017, 9, 11)
+    },
+    {
+        'title': 'Jessica Jones',
+        'allDay': true,
+        'start': new Date(2017, 9, 11),
+        'end': new Date(2017, 9, 12)
+    },
+    {
+        'title': 'Jessica Jones',
+        'start': new Date(2017, 9, 12),
+        'end': new Date(2017, 9, 13)
+    },
+    {
+        'title': 'Jessica Jones',
         'start': new Date(2017, 9, 13),
-        'end': new Date(2017, 9, 20)
-    },
-    {
-        'title': 'Some Event',
-        'start': new Date(2017, 9, 9),
-        'end': new Date(2017, 9, 9)
+        'end': new Date(2017, 9, 14)
     },
 ]
 

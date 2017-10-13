@@ -9,4 +9,5 @@ module.exports = {
   login: require('./login'),
   add: require('./add'),
   addshow: require('./addShow'),
+  addmovie: require('./addmovie'),
 };

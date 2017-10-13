@@ -25,7 +25,9 @@ class App extends React.Component {
       showId: '',
       showName: '',
       addedShowEpisodes: [],
-      PostAddShowData: {}
+      addedMovie: {},
+      PostAddShowData: {},
+      isTVShow: false
     };
   }
 
@@ -48,8 +50,8 @@ class App extends React.Component {
   getShow(showIdAndName) { //may need to make a getMovie ajax request
     let showId = showIdAndName.id;
     let showName = showIdAndName.name;
-    this.setState({ showId, showName, showSelected: 'true' })
-
+    let isTVShow = showIdAndName.isTVShow;
+    this.setState({ showId, showName, isTVShow: isTVShow, showSelected: 'true' }) //this doesn't update state??
     $.ajax({
       url: '/add',
       method: 'POST',
@@ -57,6 +59,25 @@ class App extends React.Component {
       data: JSON.stringify({ id: showId }),
       success: data => this.setState({ addedShowEpisodes: data }),
       error: () => console.log('error getting show info')
+    });
+  }
+
+  getMovie(movieIdAndName) {
+    // console.log('called: ', movieIdAndName);
+    let movieId = movieIdAndName.id;
+    let movieName = movieIdAndName.name;
+    let isTVShow = movieIdAndName.isTVShow;
+    this.setState({ movieId, movieName, isTVShow: isTVShow, showSelected: 'true' })
+    $.ajax({
+      url: '/addmovie',
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({ id: movieId }),
+      success: data => {
+        console.log('data from getMovie:', data);
+        // this.setState({ addedMovie: data })
+      },
+      error: () => console.log('error getting movie info')
     });
   }
 
@@ -85,8 +106,10 @@ class App extends React.Component {
         showSelected = { this.state.showSelected }
         changeView = { this.changeView.bind(this) }
         getShow = { this.getShow.bind(this) }
+        getMovie = { this.getMovie.bind(this) }
         showName = { this.state.showName }
         showId = { this.state.showId }
+        isTVShow = { this.state.isTVShow }
         addedShowEpisodes = { this.state.addedShowEpisodes }
         getPostAddShowData = { this.getPostAddShowData.bind(this) }
       />

@@ -29,7 +29,7 @@ class MovieTvTab extends Component {
               { this.props.showList.map((show, i) => <ShowEntry show={show} key={i} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow} isTVShow={true}/>) }
             </Grid>
           : <Grid celled>
-              { this.props.movieList.map((show, i) => <ShowEntry show={show} key={i} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow} isTVShow={false}/>) }
+              { this.props.movieList.map((show, i) => <ShowEntry show={show} key={i} getMovie={this.props.getMovie} loggedIn={this.props.loggedIn} addShow={this.props.addShow} isTVShow={false}/>) }
             </Grid>}
         </div>
       </div>

@@ -32,12 +32,12 @@ class ShowEntry extends Component {
               inverted color='red' 
               onClick={() => {
                 this.props.addShow();
-                let showObj = {};
-                showObj.id = this.props.show.id;
-                showObj.name = this.props.show.name;
-                showObj.isTVShow = this.props.isTVShow;
-                console.log(showObj);
-                // this.props.getShow(showObj); //currently not working
+                let movieObj = {};
+                movieObj.id = this.props.show.id;
+                movieObj.name = this.props.show.name;
+                movieObj.isTVShow = this.props.isTVShow;
+                console.log(movieObj);
+                this.props.getMovie(movieObj); //currently not working
               }}>
               Add movie <Icon name='add to calendar'/>
             </Button>  

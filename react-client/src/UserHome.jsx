@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ShowList from './components/ShowList.jsx';
 import Navbar from './components/Navbar.jsx';
 import AddShow from './components/AddShow.jsx';
+import AddMovie from './components/AddMovie.jsx';
 import { Container, Header, Icon, Message, Transition, Button } from 'semantic-ui-react'
 
 class UserHome extends Component {
@@ -9,13 +10,15 @@ class UserHome extends Component {
   	super(props);
     this.state = {
       showSelected: 'false',
+      isTVShow: false
     };
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ 
       showId: nextProps.showId,
-      showSelected: nextProps.showSelected
+      showSelected: nextProps.showSelected,
+      isTVShow: nextProps.isTVShow
     });
   }
 
@@ -44,6 +47,7 @@ class UserHome extends Component {
 
             <ShowList 
               getShow = { this.props.getShow } 
+              getMovie = {this.props.getMovie }
               showList = { this.props.showList }
               addedShowEpisodes = { this.state.addedShowEpisodes }
               showName = { this.props.showName }
@@ -51,7 +55,7 @@ class UserHome extends Component {
               addShow = { this.props.addShow }
               showSelected = { this.props.showSelected }
             />
-            {this.state.showSelected === 'true' ?
+            {this.state.showSelected === 'true' && this.state.isTVShow ?
             <AddShow
               showId = { this.props.showId } 
               showName = { this.props.showName }

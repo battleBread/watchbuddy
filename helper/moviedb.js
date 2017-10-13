@@ -140,15 +140,21 @@ let details = (id, callback) => {
 	})
 }
 
-let movieDetails = (id, callback) => {
+let movieDetails = (id) => {
   let options = {
     url: `https://api.themoviedb.org/3/movie/${id}?api_key=${config.TOKEN}&language=en-US`,
     headers: {
       'User-Agent': 'request'
     }
   }
-  request(options, (err, res, body) => {
-    callback(body)
+  return new Promise(function(resolve, reject) {
+    request(options, (err, res, body) => {
+      if(err) {
+        reject(err)
+      } else {
+        resolve(body);
+      }
+    })   
   })
 }
 

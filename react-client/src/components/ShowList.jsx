@@ -37,8 +37,8 @@ class ShowList extends Component {
     });
   }
 
-  componentWillReceiveProps({ showList, addedShowEpisodes, showSelected }) {
-    this.setState({ showList, addedShowEpisodes, showSelected });
+  componentWillReceiveProps({ showList, movieList, addedShowEpisodes, showSelected }) {
+    this.setState({ showList, movieList, addedShowEpisodes, showSelected });
   }
 
   render() { 

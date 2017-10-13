@@ -52,6 +52,7 @@ class UserHome extends Component {
               getMovie = { this.props.getMovie }
               isTVShow = { this.state.isTVShow }
               showList = { this.props.showList }
+              movieList = { this.props.movieList }
               addedShowEpisodes = { this.state.addedShowEpisodes }
               showName = { this.props.showName }
               loggedIn = 'true'

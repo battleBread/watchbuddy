@@ -143,7 +143,7 @@ class newCalendar extends Component {
             <Button color='red' id="authorize-button" style={authorize} onClick={this.handleAuthClick}>
               Connect your Google Calendar
             </Button>
-            <Button color='red' id="signout-button" style={authorize} onClick={this.handleAuthClick}>
+            <Button color='red' id="signout-button" style={authorize} onClick={this.handleSignoutClick}>
               Sign Out
             </Button>
             <pre id="content"></pre>

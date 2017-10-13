@@ -1,6 +1,10 @@
 const { Schema } = require('mongoose');
 
-module.exports = Schema({
+const showSchema = Schema({
+  userId: {
+    type: Number,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -33,3 +37,13 @@ module.exports = Schema({
     runtime: Number,
   }],
 });
+
+showSchema.methods.getEpisodes = () => {
+  return this.episodes;
+};
+
+showSchema.methods.setEpisode = () => {
+
+};
+
+module.exports = showSchema;

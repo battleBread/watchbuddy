@@ -27,12 +27,19 @@ module.exports = {
  *      $ brew install postgres
  * 3. Create a new Postgres DB cluster: 
  *      $ initdb /usr/local/var/postgres
- * 4. Start the server: 
- *      $ brew services start postgresql
- * 5. Create a 'postgres' user (fill in version w/ your postgres version): 
+ * 4. Create a 'postgres' user (fill in version w/ your postgres version): 
  *      $ /usr/local/Cellar/postgresql/<version>/bin/createuser -s postgres
+ * 5. Start the server: 
+ *      $ brew services start postgresql
  * 6. Create the 'watchpotato' database using 'postgres' user: 
  *      $ createdb -O postgres watchpotato
+ * 
+ * IMPORTANT: you MUST update your local config.js to include the follwing object:
+ *  POSTGRES: {
+ *    USER: <your postgres username>
+ *    PASSWORD: <your postgres password>
+ *    HOST: <your postgres host url. Usually 'localhost'>
+ *  }
  * 
  * --To view the tables (schema),
  *   - type: 'psql -U postgres'

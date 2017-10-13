@@ -13,6 +13,10 @@ module.exports = {
     User.findOne({ where: { username }})
       .then(({ dataValues: { id }}) => {
         console.log('found', username, id);
+        console.log(`body: 
+          events: ${JSON.stringify(events)}, 
+          shows: ${JSON.stringify(shows)}, 
+          movies: ${JSON.stringify(movies)}, `);
         res.send(JSON.stringify(id));
       });
   },

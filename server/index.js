@@ -14,11 +14,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static(__dirname + '/../react-client/dist'));
 
-app.get('/recommend', routes.recommend);
+
+app.get('/user/:username', (req, res) => {
+	routes.user.GET(req, res, req.params.username);
+});
+
+app.get('/:route', (req, res) => {
+	console.log('GET to: ', req.params.route);
+	routes[req.params.route].GET(req, res);
+})
 
 app.post('/:route', (req, res) => {
-	console.log(req.params.route);
-	routes[req.params.route](req, res);
+	console.log('POST to: ', req.params.route);
+	routes[req.params.route].POST(req, res);
 });
 
 app.listen(process.env.PORT || 3000, ()  => {

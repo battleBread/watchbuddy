@@ -10,4 +10,5 @@ module.exports = {
   add: require('./add'),
   addshow: require('./addShow'),
   addmovie: require('./addmovie'),
+  user: require('./user'),
 };

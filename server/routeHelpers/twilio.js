@@ -87,6 +87,8 @@ const message = (req, res) => {
 };
 
 module.exports = {
-  twilio,
-  message,
+  post: {
+    twilio,
+    message,
+  }
 }

@@ -5,7 +5,11 @@ const { POSTGRES: { USER, PASSWORD, HOST }} = require('../config');
 const sequelize = new Sequelize('watchpotato', USER, PASSWORD, {
   host: HOST,
   dialect: 'postgres',
+  sync: {force: true},
+  syncOnAssociation: true,
+  pool: { maxConnections: 5, maxIdleTime: 30},
 });
+
 
 const User = sequelize.define('user', userSchema);
 

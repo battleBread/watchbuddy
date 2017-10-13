@@ -15,16 +15,48 @@ class Profile extends Component {
     }
     this.updateRating = this.updateRating.bind(this);
     this.updateReview = this.updateReview.bind(this);
+    this.scheduleShow = this.scheduleShow.bind(this);
+    this.updateProfilePic = this.updateProfilePic.bind(this);
+    this.updateBio = this.updateBio.bind(this);
+    this.updateNumber = this.updateNumber.bind(this);
+    
   }
   
+  updateNumber() {
+    //this will route to server to update the users Phone number for notifcations
+    console.log('updating the users PHONENUMBER')
+  }
+
+  updateBio() {
+    //this will route to server to update the users Bio
+    console.log('updating the users bio')
+  }
+
+  updateProfilePic() {
+    //this will route to server to update the users profile picture
+    console.log('updating the users profile picture')
+
+  }
+
   updateRating() {
     //this will route to server to update rating for user-movie/show
+    console.log('updating show RATING!')
+    
   }
 
   updateReview() {
     //this will route to server to update review for user-move/show
+    console.log('updating show REVIEW!')
+    
   }
 
+  scheduleShow() {
+    console.log('SCHEDULING show!')
+  }
+
+//profile page should have two views [not logged in, logged in]
+//if the user is not logged in, we should redirect the user to log in page
+// if user is logged in, then the profile page will work
 
 	render () {
 		return (
@@ -59,7 +91,7 @@ class Profile extends Component {
               <Table.HeaderCell>Movie Poster</Table.HeaderCell>
               <Table.HeaderCell>Title</Table.HeaderCell>
               <Table.HeaderCell>Your Rating</Table.HeaderCell>
-              <Table.HeaderCell>MovieDB Ratings</Table.HeaderCell>
+              <Table.HeaderCell>Watch again!</Table.HeaderCell>
               <Table.HeaderCell>Your Review</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
@@ -74,8 +106,7 @@ class Profile extends Component {
                 <Rating icon='star' defaultRating={this.state.ratedShowsMovies[0].rating} maxRating={5} />
               </Table.Cell>
               <Table.Cell textAlign='right'>
-                  80% <br />
-                <a href='#'>18 studies</a>
+                <Button icon color ='blue' onClick={this.scheduleShow}> Schedule </Button>
               </Table.Cell>
               <Table.Cell>
                 {this.state.ratedShowsMovies[0].review}
@@ -90,8 +121,7 @@ class Profile extends Component {
                 <Rating icon='star' defaultRating={this.state.ratedShowsMovies[1].rating} maxRating={5} />
               </Table.Cell>
               <Table.Cell textAlign='right'>
-                  100% <br />
-                <a href='#'>65 studies</a>
+                <Button icon color ='blue' onClick={this.scheduleShow}> Schedule </Button>
               </Table.Cell>
               <Table.Cell>
                 {this.state.ratedShowsMovies[1].review}

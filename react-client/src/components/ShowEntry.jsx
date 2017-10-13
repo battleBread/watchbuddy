@@ -8,7 +8,7 @@ class ShowEntry extends Component {
 
   render() {
     return (<Grid.Row>
-        <Grid.Column width={3}>
+        <Grid.Column width={4} verticalAlign='middle'>
           <Container>
           <Image src={this.props.show.image} size='huge' verticalAlign='middle'/>
           { this.props.loggedIn === 'true' && this.props.isTVShow ? 
@@ -45,7 +45,7 @@ class ShowEntry extends Component {
           </Container>
         </Grid.Column>
 
-      <Grid.Column width={13}>
+      <Grid.Column width={12}>
         <ul style={{listStyle: 'none'}}>
           <li><h4>{this.props.show.name}</h4></li>
           <ul>{this.props.show.genres.map((genre, i) => <li key={i}>{genre}</li>)}</ul>

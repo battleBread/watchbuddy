@@ -18,7 +18,7 @@ class Home extends Component {
               <Header.Content>
                 No time to catch up on your favorite TV show?
                 <Header textAlign='center'>
-                  WatchBuddy's got you covered
+                  WatchPotato's got you covered
                 </Header>
               </Header.Content>
             </Header>

@@ -2,7 +2,7 @@ const moviedb = require('../../helper/moviedb.js');
 
 //This function will search for the top 10 results when inputting a term into the MovieDB api.
 module.exports = (req, res) => {
-	console.log(req.body.term);
+	// console.log(req.body.term);
 	var title = req.body.term;
 	var genres;
   var movieGenres;
@@ -10,7 +10,6 @@ module.exports = (req, res) => {
   var movieArray;
 	return moviedb.genre()
 	.then(data => {
-		console.log('genres', data)
 		genres = JSON.parse(data).genres;
     // return moviedb.search(title)
     return moviedb.movieGenres()
@@ -20,8 +19,8 @@ module.exports = (req, res) => {
     return moviedb.search(title)
   })
   .then(data => {
-    console.log(data);
     var searched = JSON.parse(data).results.splice(0, 10);
+    // console.log('first tv show: ', searched[0]);
     array = searched.map(el => {
       const { name, id } = el;
       const arr = el.genre_ids.reduce((memo, int) => {
@@ -43,6 +42,7 @@ module.exports = (req, res) => {
   })
   .then(data => {
     var searched = JSON.parse(data).results.splice(0, 10);
+    // console.log('first movie: ', searched[0]);
     movieArray = searched.map(movie => {
       // console.log(movie);
       const { title, id } = movie;

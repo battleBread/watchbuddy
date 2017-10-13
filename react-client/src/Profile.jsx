@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import { Table, Rating, Container, Button, Form, Grid, Header, Image, Message, Segment, Icon, Transition } from 'semantic-ui-react';
+import { Table, Card, Rating, Container, Button, Form, Grid, Header, Image, Message, Segment, Icon, Transition } from 'semantic-ui-react';
 import NavBar from './components/Navbar.jsx';
 import data from './sampleData.js';
 
@@ -67,8 +67,28 @@ class Profile extends Component {
 				<Grid columns={2} divided>
 				  <Grid.Row>
 			  		<Grid.Column>
-				      <Image src={this.state.avatar}/>
-					  Profile Picture
+              <Card>
+                <Image src= {this.state.avatar} />
+                <Card.Content>
+                  <Card.Header>
+                    {this.state.name}
+                  </Card.Header>
+                  <Card.Meta>
+                    <span className='date'>
+                      Joined in 2017
+                    </span>
+                  </Card.Meta>
+                  <Card.Description>
+                    {this.state.bio}
+                  </Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                  <a>
+                    <Icon name='user' />
+                    22 Friends
+                  </a>
+                </Card.Content>
+              </Card>
 			       </Grid.Column>
 			       <Grid.Column>
 				   	  <Container>
@@ -84,8 +104,8 @@ class Profile extends Component {
 			       </Grid.Column>
 			      </Grid.Row>
 		  		</Grid>
-
-          <Table celled padded>
+          //celled padded or celled selectable, you can choose via semantic react ui page for your preferences
+          <Table celled inverted selectable>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Movie Poster</Table.HeaderCell>

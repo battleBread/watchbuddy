@@ -97,36 +97,25 @@ class Profile extends Component {
           </Table.Header>
       
           <Table.Body>
-            <Table.Row>
-              <Table.Cell>
-              <Image src={this.state.ratedShowsMovies[0].poster}/>
-              </Table.Cell>
-              <Table.Cell singleLine>{this.state.ratedShowsMovies[0].title}</Table.Cell>
-              <Table.Cell>
-                <Rating icon='star' defaultRating={this.state.ratedShowsMovies[0].rating} maxRating={5} />
-              </Table.Cell>
-              <Table.Cell textAlign='right'>
-                <Button icon color ='blue' onClick={this.scheduleShow}> Schedule </Button>
-              </Table.Cell>
-              <Table.Cell>
-                {this.state.ratedShowsMovies[0].review}
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>
-              <Image src={this.state.ratedShowsMovies[1].poster}/>
-              </Table.Cell>
-              <Table.Cell singleLine>{this.state.ratedShowsMovies[1].title}</Table.Cell>
-              <Table.Cell>
-                <Rating icon='star' defaultRating={this.state.ratedShowsMovies[1].rating} maxRating={5} />
-              </Table.Cell>
-              <Table.Cell textAlign='right'>
-                <Button icon color ='blue' onClick={this.scheduleShow}> Schedule </Button>
-              </Table.Cell>
-              <Table.Cell>
-                {this.state.ratedShowsMovies[1].review}
-              </Table.Cell>
-            </Table.Row>
+
+            {this.state.ratedShowsMovies.map(movie => 
+                <Table.Row>
+                  <Table.Cell>
+                  <Image src={movie.poster}/>
+                  </Table.Cell>
+                  <Table.Cell singleLine>{movie.title}</Table.Cell>
+                  <Table.Cell>
+                    <Rating icon='star' defaultRating={movie.rating} maxRating={5} />
+                  </Table.Cell>
+                  <Table.Cell textAlign='right'>
+                    <Button icon color ='blue' onClick={this.scheduleShow}> Schedule </Button>
+                  </Table.Cell>
+                  <Table.Cell>
+                    {movie.review}
+                  </Table.Cell>
+                </Table.Row>
+            )}
+
           </Table.Body>
         </Table>
 

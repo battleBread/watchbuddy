@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import { Button, Form, Grid, Header, Image, Message, Segment, Icon, Transition } from 'semantic-ui-react';
+import { Container, Button, Form, Grid, Header, Image, Message, Segment, Icon, Transition } from 'semantic-ui-react';
 import NavBar from './components/Navbar.jsx';
 
 class Profile extends Component {
@@ -8,7 +8,7 @@ class Profile extends Component {
 		super(props);
 		this.state = {
 			name: 'Devon',
-			avatar: 'https://i.imgur.com/YV3EI8I.jpg',
+			avatar: 'https://i.imgur.com/bVhY86x.jpg',
 			bio: 'I created an account on Watch Potato so that I can watch my shows at specific times, have someone remind me to watch and even rate them!',
 			ratedShowsMovies: ['the matrix', 'lion king', 'gladiator']
 		}
@@ -17,17 +17,34 @@ class Profile extends Component {
 		return (
 			<div>
 				<NavBar
-				loggedIn='true' />
-				<div className='profilePicture'>
-				Here is the profile picture
-				<img src='https://i.imgur.com/YV3EI8I.jpg'/>
-				</div>
-				<div className='profileBio'>
-				here is the profile bio
-				{this.state.bio}
-				</div> 
-				Hello this is my profile page.
-				{this.state.ratedShowsMovies}
+				loggedIn='true' />	
+
+				<Grid columns={2} divided>
+				  <Grid.Row>
+			  		<Grid.Column>
+				      <Image src={this.state.avatar}/>
+					  Profile Picture
+			       </Grid.Column>
+			       <Grid.Column>
+				   	  <Container>
+			          <Message>
+                  <Message.Header>
+                  Welcome back, {this.state.name}
+                  </Message.Header>
+                  <p>{this.state.bio}</p>
+                </Message>
+			        </Container>
+			       </Grid.Column>
+			      </Grid.Row>
+		  		</Grid>
+
+
+
+			
+
+
+
+
 			</div>
 		)
 	}

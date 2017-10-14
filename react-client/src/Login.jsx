@@ -71,7 +71,7 @@ class Login extends Component {
           verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='orange' textAlign='center'>
-              <div><Icon name ='film' /> <Icon name='child' /> WatchBuddy</div>
+              <div><Icon name ='film' /> <Icon name='child' /> WatchPotato</div>
             </Header>
             <Form size='large'>
               <Segment stacked>

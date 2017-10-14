@@ -8,88 +8,129 @@ class EditProfile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      userName: 'Devon',
+      phonenumber: '',
+      name: 'Devon',
       userNum: '1234567890',
-      avatar: 'https://i.imgur.com/bVhY86x.jpg',
-	    bio: 'I created an account on Watch Potato so that I can watch my shows at specific times, have someone remind me to watch and even rate them!'
+	  avatar: 'https://i.imgur.com/bVhY86x.jpg',
+	  bio: 'I created an account on Watch Potato so that I can watch my shows at specific times, have someone remind me to watch and even rate them!'
     }
-    this.updateEverything = this.updateEverything.bind(this);
-    this.handleChangeBio = this.handleChangeBio.bind(this);
-    this.handleChangeNumber = this.handleChangeNumber.bind(this);
-    this.handleChangeAvatar = this.handleChangeAvatar.bind(this);
+    this.updateRating = this.updateRating.bind(this);
+    this.updateReview = this.updateReview.bind(this);
+    this.updateProfilePic = this.updateProfilePic.bind(this);
+    this.updateBio = this.updateBio.bind(this);
+    this.updateNumber = this.updateNumber.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     
   }
   
-  handleChangeBio(event) {
-    this.setState({bio: event.target.value});
-    console.log(this.state.bio)
+  handleChange(event) {
+    this.setState({phonenumber: event.target.value});
+    console.log(this.state.phonenumber)
   }
-  handleChangeNumber(event) {
-    this.setState({userNum: event.target.value});
-    console.log(this.state.userNum)
+  updateNumber() {
+    //this will route to server to update the users Phone number for notifcations
+    console.log('updating the users PHONENUMBER')
+    let phonenum = this.state.phonenumber;
+    //ajax call to server to update phonenum 
   }
-  handleChangeAvatar(event) {
-    this.setState({avatar: event.target.value});
-    console.log(this.state.avatar)
+  updateBio() {
+    //this will route to server to update the users Bio
+    console.log('updating the users bio')
   }
-
-  goToHome() {
-    console.log('Going Home');
-    this.props.changeView('UserHome');
+  updateProfilePic() {
+    //this will route to server to update the users profile picture
+    console.log('updating the users profile picture')
   }
-
-  updateEverything() {
-    console.log('updating everything')  
-    //ajax call to /user/username/update
-    //send as an object to update the users information.
-  console.log('this is num: ', this.state.userNum);
-  console.log('this is bio: ', this.state.bio);
-  console.log('this is avatar: ', this.state.avatar);
-
+  updateRating() {
+    //this will route to server to update rating for user-movie/show
+    console.log('updating show RATING!')
+  }
+  updateReview() {
+    //this will route to server to update review for user-move/show
+    console.log('updating show REVIEW!')
   }
 
 	render () {
 		return (
-      <Transition animation='fade up' duration={1500} transitionOnMount={true}>      
 			<div>
 				<NavBar
 				loggedIn='true' />	
+        <Item.Group divided>
+        <Item>
+      <Item.Image src={this.state.avatar} />
+      <Item.Content>
+        <Item.Header> Welcome, {this.state.name}</Item.Header>
+        <Item.Meta>
+          <span className='years'>Joined in 2017</span>
+        </Item.Meta>
+        <Item.Description>{this.state.bio}</Item.Description>
+        <Item.Extra>
+            
+          Current Number in use for Notifications: {this.state.userNum}
+          <Input placeholder = 'Change Phone Number' onChange = { this.handleChange.bind(this) } /> 
+          <Button size='mini' icon color ='black' onClick={this.updateNumber}>Update!</Button>
 
-        <Grid>
-          <Grid.Column floated='right' width={5}>
-            <Card>
-              <Image src={this.state.avatar} />
-            <Card.Content>
-              <Card.Header>{this.state.userName}</Card.Header>
-              <Card.Meta>Joined in 2017</Card.Meta>
-              <Card.Description>{this.state.bio}</Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-              <a>
-                <Icon name='call' />
-                {this.state.userNum}
-              </a>
-            </Card.Content>
-          </Card>
-        </Grid.Column>
+        </Item.Extra>
+      </Item.Content>
+    </Item>
+    </Item.Group>
+          
 
-        <Grid.Column floated='left'  width={10}>
-          <Form>
-            <Form.Group widths='equal'>
-              <Form.Field id='form-input-control-phoneNumber' control={Input} label='Phone Number' placeholder={this.state.userNum} onChange={this.handleChangeNumber} />
-            </Form.Group>
-            <Form.Field id='form-textarea-control-avatar' control={Input} label='Avatar' placeholder={this.state.avatar} onChange={this.handleChangeAvatar}/>
-            <Form.Field id='form-textarea-control-bio' control={Input} label='Bio' placeholder={this.state.bio} onChange={this.handleChangeBio}/>
-            <Form.Field id='form-button-control-public' control={Button} content='Confirm' label='Submit Changes' onClick={this.updateEverything} />
-            <Button onClick={this.goToHome.bind(this)}>Go Home</Button>
-          </Form>
-        </Grid.Column>
-      </Grid>
-		</div>
-    </Transition>
+			</div>
 		)
 	}
+
 }
 
 export default EditProfile;
 
+/*
+				   	  <Container>
+			          <Message> 
+                  <Message.Header>
+                  Welcome back, {this.state.name}
+                  </Message.Header>
+                  <p>{this.state.name}'s Bio</p>
+                  <p>{this.state.bio}</p>
+                </Message>
+              </Container>
+
+
+				<Grid columns={2} divided>
+				  <Grid.Row>
+			  		<Grid.Column>
+              <Card>
+                <Image src= {this.state.avatar} />
+                <Card.Content>
+                  <Card.Header>
+                    {this.state.name}
+                  </Card.Header>
+                  <Card.Meta>
+                    <span className='date'>
+                      Joined in 2017
+                    </span>
+                  </Card.Meta>
+                  <Card.Description>
+                    {this.state.bio}
+                  </Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                  <a>
+                    <Icon name='user' />
+                    22 Friends
+                  </a>
+                </Card.Content>
+              </Card>
+			       </Grid.Column>
+			       <Grid.Column>
+
+
+			       </Grid.Column>
+			      </Grid.Row>
+		  		</Grid>
+
+
+                    <Input placeholder = 'Change Phone Number' onChange = { this.handleChange.bind(this) } /> 
+          <Button size='mini' icon color ='black' onClick={this.updateNumber}>Update!</Button>
+
+*/

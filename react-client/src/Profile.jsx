@@ -21,10 +21,8 @@ class Profile extends Component {
     this.toggleNotificationOff = this.toggleNotificationOff.bind(this);
     this.editProfile = this.editProfile.bind(this);
   }
-
   editProfile() {
-    console.log('redirecting the user to edit profile');
-    this.props.changeView('EditProfile');
+    console.log('redirecting the user to edit profile')
   }
   
   scheduleShow() {
@@ -35,19 +33,12 @@ class Profile extends Component {
       notification: false
     })
     console.log('Notifications are OFF');
-    //ajax call to update user/username/update notifications boolean
   }
   toggleNotificationOn() {
     this.setState({
       notification: true
     })
     console.log('Notifications are ON');
-    //ajax call to update user/username/update notifications boolean
-  }
-
-  goToHome() {
-    console.log('Going Home');
-    this.props.changeView('UserHome');
   }
 
 	render () {

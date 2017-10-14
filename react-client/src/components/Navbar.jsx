@@ -48,9 +48,15 @@ class Navbar extends Component {
         <Menu.Item>
           <h2><Icon name = 'film' /> <Icon name = 'child' /> WatchPotato</h2>
         </Menu.Item>
-        <Menu.Item>
-        <Button icon color ='black' onClick={this.goToProfilePage.bind(this)}> Go to Profile </Button>
-        </Menu.Item>
+
+        {this.state.loggedIn === 'true' ?
+          <Menu.Item>
+            <Button icon color ='black' onClick={this.goToProfilePage.bind(this)}> Go to Profile </Button>
+          </Menu.Item>
+        : <Menu.Item>
+          </Menu.Item>
+          }
+
         <Menu.Menu position = 'right'>
           <Menu.Item>
           

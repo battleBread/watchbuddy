@@ -35,21 +35,24 @@ class Profile extends Component {
       notification: false
     })
     console.log('Notifications are OFF');
+    //ajax call to update user/username/update notifications boolean
   }
   toggleNotificationOn() {
     this.setState({
       notification: true
     })
     console.log('Notifications are ON');
+    //ajax call to update user/username/update notifications boolean
   }
 
-//profile page should have two views [not logged in, logged in]
-//if the user is not logged in, we should redirect the user to log in page
-// if user is logged in, then the profile page will work
+  goToHome() {
+    console.log('Going Home');
+    this.props.changeView('UserHome');
+  }
 
 	render () {
 		return (
-      <Transition animation='fade up' duration={2000} transitionOnMount={true}>
+      <Transition animation='fade up' duration={1500} transitionOnMount={true}>
 			<div>
 				<NavBar
 				loggedIn='true' />	
@@ -65,17 +68,17 @@ class Profile extends Component {
         <Item.Extra>
           <Container>
           Current Number in use for Notifications: <strong>{this.state.userNum}</strong>
-          <li>{this.state.notification === true ? 'Notifications are ON' : 'Notifications are OFF' }</li>
+          <li>Notifications are {this.state.notification === true ? <Icon name = 'toggle on' className = 'icon' /> : <Icon name = 'toggle off' className = 'icon' /> }</li>
           </Container>
           <Button.Group>
-            <Button onClick={this.toggleNotificationOff}>Notifcations Off</Button>
+            <Button onClick={this.toggleNotificationOff}>Notifications Off</Button>
             <Button.Or />
             <Button onClick={this.toggleNotificationOn} positive>Notifcations On</Button>
           </Button.Group>
           <Button onClick={this.editProfile}>Edit Profile &nbsp; 
               <Icon name = 'edit' className = 'icon'  />
-            </Button>
-
+          </Button>
+          <Button onClick={this.goToHome.bind(this)}>Home</Button>
         </Item.Extra>
       </Item.Content>
     </Item>

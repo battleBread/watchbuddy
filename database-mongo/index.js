@@ -17,28 +17,28 @@ module.exports = {
   Movie,
 };
 
-const simpsons = new Show({
-  title: 'The Simpsons',
-  userId: 2,
-  rating: 5,
-  episodes: [
-    {
-    title: 'Pilot',
-    season: 1,
-    episode: 1,
-    },
-    {
-      title: 'Homer vs. New York',
-      season: 9,
-      episode: 6,
-    },
-    {
-      title: 'Pilot',
-      season: 1,
-      episode: 1,
-    },
-  ]
-});
+// const simpsons = new Show({
+//   title: 'The Simpsons',
+//   userId: 2,
+//   rating: 5,
+//   episodes: [
+//     {
+//     title: 'Pilot',
+//     season: 1,
+//     episode: 1,
+//     },
+//     {
+//       title: 'Homer vs. New York',
+//       season: 9,
+//       episode: 6,
+//     },
+//     {
+//       title: 'Pilot',
+//       season: 1,
+//       episode: 1,
+//     },
+//   ]
+// });
 
 // simpsons.save();
 

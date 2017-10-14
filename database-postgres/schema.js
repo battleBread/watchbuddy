@@ -19,7 +19,7 @@ module.exports.userSchema = {
   phone: {
     type: Sequelize.STRING,
   },
-  avatar: {
+  avatarUrl: {
     type: Sequelize.STRING,
   },
   notifications: {

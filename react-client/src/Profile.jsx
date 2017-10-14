@@ -8,6 +8,7 @@ class Profile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+      notification: true,
       phonenumber: '',
       name: 'Devon',
       userNum: '1234567890',
@@ -15,53 +16,29 @@ class Profile extends Component {
 			bio: 'I created an account on Watch Potato so that I can watch my shows at specific times, have someone remind me to watch and even rate them!',
 			ratedShowsMovies: data
     }
-    this.updateRating = this.updateRating.bind(this);
-    this.updateReview = this.updateReview.bind(this);
     this.scheduleShow = this.scheduleShow.bind(this);
-    this.updateProfilePic = this.updateProfilePic.bind(this);
-    this.updateBio = this.updateBio.bind(this);
-    this.updateNumber = this.updateNumber.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    
+    this.toggleNotificationOn = this.toggleNotificationOn.bind(this);
+    this.toggleNotificationOff = this.toggleNotificationOff.bind(this);
+    this.editProfile = this.editProfile.bind(this);
+  }
+  editProfile() {
+    console.log('redirecting the user to edit profile')
   }
   
-  handleChange(event) {
-    this.setState({phonenumber: event.target.value});
-    console.log(this.state.phonenumber)
-  }
-
-  updateNumber() {
-    //this will route to server to update the users Phone number for notifcations
-    console.log('updating the users PHONENUMBER')
-    let phonenum = this.state.phonenumber;
-    //ajax call to server to update phonenum 
-  }
-
-  updateBio() {
-    //this will route to server to update the users Bio
-    console.log('updating the users bio')
-  }
-
-  updateProfilePic() {
-    //this will route to server to update the users profile picture
-    console.log('updating the users profile picture')
-
-  }
-
-  updateRating() {
-    //this will route to server to update rating for user-movie/show
-    console.log('updating show RATING!')
-    
-  }
-
-  updateReview() {
-    //this will route to server to update review for user-move/show
-    console.log('updating show REVIEW!')
-    
-  }
-
   scheduleShow() {
-    console.log('SCHEDULING show!')
+    console.log('SCHEDULING show!');
+  }
+  toggleNotificationOff() {
+    this.setState({
+      notification: false
+    })
+    console.log('Notifications are OFF');
+  }
+  toggleNotificationOn() {
+    this.setState({
+      notification: true
+    })
+    console.log('Notifications are ON');
   }
 
 //profile page should have two views [not logged in, logged in]
@@ -70,6 +47,7 @@ class Profile extends Component {
 
 	render () {
 		return (
+      <Transition animation='fade up' duration={2000} transitionOnMount={true}>
 			<div>
 				<NavBar
 				loggedIn='true' />	
@@ -83,13 +61,19 @@ class Profile extends Component {
         </Item.Meta>
         <Item.Description>{this.state.bio}</Item.Description>
         <Item.Extra>
+          <Container>
           Current Number in use for Notifications: <strong>{this.state.userNum}</strong>
+          <li>{this.state.notification === true ? 'Notifications are ON' : 'Notifications are OFF' }</li>
+          </Container>
           <Button.Group>
-            <Button>Notifcations Off</Button>
+            <Button onClick={this.toggleNotificationOff}>Notifcations Off</Button>
             <Button.Or />
-            <Button positive>Notifcations On</Button>
+            <Button onClick={this.toggleNotificationOn} positive>Notifcations On</Button>
           </Button.Group>
           
+          <Button icon color = 'black'>
+              <Icon name = 'edit' className = 'icon' onClick = { this.editProfile) } />
+            </Button>
         </Item.Extra>
       </Item.Content>
     </Item>
@@ -129,6 +113,7 @@ class Profile extends Component {
         </Table>
 
 			</div>
+      </Transition>
 		)
 	}
 

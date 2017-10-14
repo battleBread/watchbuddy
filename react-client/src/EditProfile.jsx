@@ -4,7 +4,7 @@ import { Popup, Input, Table, Card, Item, Label, Rating, Container, Button, Form
 import NavBar from './components/Navbar.jsx';
 import data from './sampleData.js';
 
-class Profile extends Component {
+class EditProfile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -27,41 +27,28 @@ class Profile extends Component {
     this.setState({phonenumber: event.target.value});
     console.log(this.state.phonenumber)
   }
-
   updateNumber() {
     //this will route to server to update the users Phone number for notifcations
     console.log('updating the users PHONENUMBER')
     let phonenum = this.state.phonenumber;
     //ajax call to server to update phonenum 
   }
-
   updateBio() {
     //this will route to server to update the users Bio
     console.log('updating the users bio')
   }
-
   updateProfilePic() {
     //this will route to server to update the users profile picture
     console.log('updating the users profile picture')
-
   }
-
   updateRating() {
     //this will route to server to update rating for user-movie/show
     console.log('updating show RATING!')
-    
   }
-
   updateReview() {
     //this will route to server to update review for user-move/show
     console.log('updating show REVIEW!')
-    
   }
-
-
-//profile page should have two views [not logged in, logged in]
-//if the user is not logged in, we should redirect the user to log in page
-// if user is logged in, then the profile page will work
 
 	render () {
 		return (
@@ -95,7 +82,7 @@ class Profile extends Component {
 
 }
 
-export default Profile;
+export default EditProfile;
 
 /*
 				   	  <Container>

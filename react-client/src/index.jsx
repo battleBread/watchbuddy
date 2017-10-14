@@ -5,6 +5,7 @@ import Signup from './Signup.jsx';
 import Home from './Home.jsx';
 import UserHome from './UserHome.jsx';
 import Profile from './Profile.jsx';
+import EditProfile from './EditProfile.jsx';
 import DisplaySchedule from './DisplaySchedule.jsx';
 import Calendar from './Calendar.jsx'
 import $ from 'jquery';

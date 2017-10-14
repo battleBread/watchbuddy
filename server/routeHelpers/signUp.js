@@ -7,7 +7,7 @@ module.exports = {
     username, 
     password,
     phone = '',
-    avatarUrl = '',
+    avatarUrl = 'http://www.redgem.com.au/NEW/wp-content/uploads/2017/02/potato.jpg',
   }}, res) => {
     //TODO: refactor to new DB schema
     // const { 

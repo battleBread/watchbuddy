@@ -18,7 +18,6 @@ class EditProfile extends Component {
     this.handleChangeNumber = this.handleChangeNumber.bind(this);
     this.handleChangeAvatar = this.handleChangeAvatar.bind(this);
     
-    
   }
   
   handleChangeBio(event) {
@@ -34,6 +33,11 @@ class EditProfile extends Component {
     console.log(this.state.avatar)
   }
 
+  goToHome() {
+    console.log('Going Home');
+    this.props.changeView('UserHome');
+  }
+
   updateEverything() {
     console.log('updating everything')  
     //ajax call to /user/username/update
@@ -46,7 +50,7 @@ class EditProfile extends Component {
 
 	render () {
 		return (
-      <Transition animation='fade up' duration={2000} transitionOnMount={true}>      
+      <Transition animation='fade up' duration={1500} transitionOnMount={true}>      
 			<div>
 				<NavBar
 				loggedIn='true' />	
@@ -77,6 +81,7 @@ class EditProfile extends Component {
             <Form.Field id='form-textarea-control-avatar' control={Input} label='Avatar' placeholder={this.state.avatar} onChange={this.handleChangeAvatar}/>
             <Form.Field id='form-textarea-control-bio' control={Input} label='Bio' placeholder={this.state.bio} onChange={this.handleChangeBio}/>
             <Form.Field id='form-button-control-public' control={Button} content='Confirm' label='Submit Changes' onClick={this.updateEverything} />
+            <Button onClick={this.goToHome.bind(this)}>Go Home</Button>
           </Form>
         </Grid.Column>
       </Grid>

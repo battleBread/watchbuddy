@@ -35,14 +35,24 @@ class Profile extends Component {
       notification: false
     })
     console.log('Notifications are OFF');
+    //ajax call to update user/username/update notifications boolean
   }
   toggleNotificationOn() {
     this.setState({
       notification: true
     })
     console.log('Notifications are ON');
+    //ajax call to update user/username/update notifications boolean
   }
 
+<<<<<<< HEAD
+=======
+  goToHome() {
+    console.log('Going Home');
+    this.props.changeView('UserHome');
+  }
+
+>>>>>>> code clean up before rebase
 	render () {
 		return (
       <Transition animation='fade up' duration={1500} transitionOnMount={true}>

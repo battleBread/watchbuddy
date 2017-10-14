@@ -70,7 +70,7 @@ class Login extends Component {
           style={{ height: '100%' }}
           verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='red' textAlign='center'>
+            <Header as='h2' color='orange' textAlign='center'>
               <div><Icon name ='film' /> <Icon name='child' /> WatchBuddy</div>
             </Header>
             <Form size='large'>
@@ -92,7 +92,7 @@ class Login extends Component {
                 />
 
                 <Button
-                  color = 'red'
+                  color = 'blue'
                   fluid size = 'large'
                   onClick = { this.handleSubmit.bind(this) }>
                   Login

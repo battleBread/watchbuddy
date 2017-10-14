@@ -22,10 +22,10 @@ class MovieTvTab extends Component {
       <div>
         <Menu pointing secondary inverted>
           <Menu.Item name='TV' active={activeItem === 'TV'} onClick={this.handleItemClick}>
-            TV <Label color='red'>{this.props.showList.length}</Label>
+            TV <Label color='orange'>{this.props.showList.length}</Label>
           </Menu.Item>
           <Menu.Item name='movies' active={activeItem === 'movies'} onClick={this.handleItemClick}>
-            Movies <Label color='red'>{this.props.movieList.length}</Label>
+            Movies <Label color='orange'>{this.props.movieList.length}</Label>
           </Menu.Item>
         </Menu>
         <div> {activeItem === 'TV'

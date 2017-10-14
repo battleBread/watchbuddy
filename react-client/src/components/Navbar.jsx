@@ -43,10 +43,10 @@ class Navbar extends Component {
   render () {
     return (
 
-      <Menu className = "ui inverted menu" inverted color='red'>
+      <Menu className = "ui inverted menu" inverted color='orange'>
 
         <Menu.Item>
-          <h2><Icon name = 'film' /> <Icon name = 'child' /> WatchPotato</h2>
+          <h2><Icon name = 'tv' /> <Icon name = 'child' /> WatchPotato</h2>
         </Menu.Item>
 
         {this.state.loggedIn === 'true' ?
@@ -61,7 +61,7 @@ class Navbar extends Component {
           <Menu.Item>
           
             <Input placeholder = 'Search...' onChange = { this.handleChange.bind(this) } />
-            <Button icon color = 'black'>
+            <Button icon color = 'blue'>
               <Icon name = 'search' className = 'icon' onClick = { this.handleSubmit.bind(this) } />
             </Button>
 
@@ -72,7 +72,7 @@ class Navbar extends Component {
                 <Button onClick = { () => {this.props.changeView('Home')} } >Logout</Button>
               </Menu.Item>
             : <Menu.Item>
-                <Button color = 'black' onClick = { () => {this.props.changeView('Login')} }>Log-in</Button>
+                <Button color = 'blue' onClick = { () => {this.props.changeView('Login')} }>Log-in</Button>
               </Menu.Item>
           }
           

@@ -183,7 +183,7 @@ class AddShow extends Component {
           `}
         </style>
         <Form>
-          <Header as='h4' textAlign='left' inverted color='red'>
+          <Header as='h4' textAlign='left' inverted color='orange'>
             Where did you leave off?
           </Header>
 
@@ -226,7 +226,7 @@ class AddShow extends Component {
             </Form.Field>
           </Form.Group>
 
-          <Header as='h4' textAlign='left' inverted color='red'>
+          <Header as='h4' textAlign='left' inverted color='orange'>
             Which days are you free?
           </Header>
 
@@ -254,7 +254,7 @@ class AddShow extends Component {
             </Form.Field>
           </Form.Group>
 
-          <Header as='h4' textAlign='left' inverted color='red'>
+          <Header as='h4' textAlign='left' inverted color='orange'>
             How many hours per day?
           </Header>
 
@@ -267,7 +267,7 @@ class AddShow extends Component {
             />
           </Form.Field>
 
-          <Button fluid color = 'red' type = 'submit' onClick = { this.handleSubmit.bind(this) }>Submit</Button>
+          <Button fluid color = 'blue' type = 'submit' onClick = { this.handleSubmit.bind(this) }>Submit</Button>
         </Form>
       </Container>
   );

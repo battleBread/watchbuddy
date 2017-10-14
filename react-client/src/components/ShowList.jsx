@@ -43,9 +43,9 @@ class ShowList extends Component {
 
   render() { 
     return (<div> { this.state.showSelected === 'true'
-    ? <Segment inverted>
+    ? <Segment inverted color='grey'>
         <Container>
-        <Button fluid icon size='big' inverted color='red'>
+        <Button fluid icon size='big' color='orange'>
           { this.props.showName } <Icon name='checked calendar'/>
         </Button>
         </Container>

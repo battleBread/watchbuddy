@@ -130,8 +130,8 @@ class newCalendar extends Component {
 
       <Container>
         <div>
-          <Button left color='red' id="authorize-button" style={authorize} onClick={this.handleAuthClick}><Icon name ='calendar plus'/>Connect your Google Calendar</Button>
-          <Button left color='red' id="signout-button" style={authorize} onClick={this.handleSignoutClick}>Sign Out</Button>
+          <Button left color='red' id="authorize-button" style={authorize} onClick={this.handleAuthClick}><Icon name ='google plus square'/>Connect your Google Calendar</Button>
+          <Button left color='red' id="signout-button" style={authorize} onClick={this.handleSignoutClick}><Icon name ='google plus square'/>Sign Out</Button>
           <Button left onClick={()=>{this.props.changeView('UserHome')}}><Icon name='user circle outline'/>Back to Profile</Button>
       </div>
 

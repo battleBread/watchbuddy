@@ -14,7 +14,7 @@ class ShowEntry extends Component {
           { this.props.loggedIn === 'true' && this.props.isTVShow ? 
             <Button 
               fluid icon size='big' 
-              inverted color='red' 
+              inverted color='orange' 
               onClick={() => {
                 this.props.addShow();
                 let showObj = {};
@@ -29,7 +29,7 @@ class ShowEntry extends Component {
           : this.props.loggedIn === 'true' ? 
             <Button 
               fluid icon size='big' 
-              inverted color='red' 
+              inverted color='orange' 
               onClick={() => {
                 this.props.addShow();
                 let movieObj = {};

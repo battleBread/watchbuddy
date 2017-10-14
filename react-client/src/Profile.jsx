@@ -21,8 +21,10 @@ class Profile extends Component {
     this.toggleNotificationOff = this.toggleNotificationOff.bind(this);
     this.editProfile = this.editProfile.bind(this);
   }
+
   editProfile() {
-    console.log('redirecting the user to edit profile')
+    console.log('redirecting the user to edit profile');
+    this.props.changeView('EditProfile');
   }
   
   scheduleShow() {

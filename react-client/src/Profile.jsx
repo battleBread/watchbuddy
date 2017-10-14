@@ -21,8 +21,10 @@ class Profile extends Component {
     this.toggleNotificationOff = this.toggleNotificationOff.bind(this);
     this.editProfile = this.editProfile.bind(this);
   }
+
   editProfile() {
-    console.log('redirecting the user to edit profile')
+    console.log('redirecting the user to edit profile');
+    this.props.changeView('EditProfile');
   }
   
   scheduleShow() {
@@ -70,10 +72,10 @@ class Profile extends Component {
             <Button.Or />
             <Button onClick={this.toggleNotificationOn} positive>Notifcations On</Button>
           </Button.Group>
-          
-          <Button icon color = 'black'>
-              <Icon name = 'edit' className = 'icon' onClick = { this.editProfile) } />
+          <Button onClick={this.editProfile}>Edit Profile &nbsp; 
+              <Icon name = 'edit' className = 'icon'  />
             </Button>
+
         </Item.Extra>
       </Item.Content>
     </Item>

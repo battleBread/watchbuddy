@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ShowList from './components/ShowList.jsx';
 import Navbar from './components/Navbar.jsx';
+import Profile from './Profile.jsx';
+
 import AddShow from './components/AddShow.jsx';
 import AddMovie from './components/AddMovie.jsx';
 import { Container, Header, Icon, Message, Transition, Button, Divider } from 'semantic-ui-react'
@@ -45,7 +47,8 @@ class UserHome extends Component {
             </Message>
 
             <Button fluid onClick={()=>{this.props.changeView('Calendar')}}><Icon name='calendar'/>VIEW CALENDAR</Button>
-
+            {/* <Divider hidden></Divider>
+            <Button fluid onClick={()=>{this.props.changeView('Profile')}}><Icon name='calendar'/>GO TO PROFILE</Button> */}
             <Divider></Divider>
 
             <ShowList 

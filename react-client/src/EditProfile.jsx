@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import { Popup, Input, Table, Card, Item, Label, Rating, Container, Button, Form, Grid, Header, Image, Message, Segment, Icon, Transition } from 'semantic-ui-react';
+import { Popup, Input, Table, Card, Item, Label, Rating, Container, Button, Form, Grid, Header, Image, Message, Segment, Icon, Transition, Divider, TextArea } from 'semantic-ui-react';
 import NavBar from './components/Navbar.jsx';
 import data from './sampleData.js';
 
@@ -10,14 +10,16 @@ class EditProfile extends Component {
 		this.state = {
       userName: 'Devon',
       userNum: '1234567890',
-      avatar: 'https://i.imgur.com/bVhY86x.jpg',
-	    bio: 'I created an account on Watch Potato so that I can watch my shows at specific times, have someone remind me to watch and even rate them!'
+      avatarUrl: 'https://i.imgur.com/bVhY86x.jpg',
+      notifications: true,
+      bio: 'I created an account on Watch Potato so that I can watch my shows at specific times, have someone remind me to watch and even rate them!',
     }
     this.updateEverything = this.updateEverything.bind(this);
     this.handleChangeBio = this.handleChangeBio.bind(this);
     this.handleChangeNumber = this.handleChangeNumber.bind(this);
     this.handleChangeAvatar = this.handleChangeAvatar.bind(this);
-    
+    this.toggleNotificationOff = this.toggleNotificationOff.bind(this);
+    this.toggleNotificationOn = this.toggleNotificationOn.bind(this);
   }
   
   handleChangeBio(event) {
@@ -38,14 +40,46 @@ class EditProfile extends Component {
     this.props.changeView('UserHome');
   }
 
+  toggleNotificationOff() {
+    this.setState({
+      notifications: false
+    })
+    console.log('Notifications are OFF');
+    //ajax call to update user/username/update notifications boolean
+  }
+  toggleNotificationOn() {
+    this.setState({
+      notifications: true
+    })
+    console.log('Notifications are ON');
+    //ajax call to update user/username/update notifications boolean
+  }
+
   updateEverything() {
     console.log('updating everything')  
     //ajax call to /user/username/update
     //send as an object to update the users information.
   console.log('this is num: ', this.state.userNum);
   console.log('this is bio: ', this.state.bio);
-  console.log('this is avatar: ', this.state.avatar);
+  console.log('this is avatar: ', this.state.avatarUrl);
 
+    $.ajax({
+      method: 'POST',
+      url: `/update/${this.state.userName}`,
+      contentType: 'application/json',
+      data: JSON.stringify({
+        phone: this.state.userNum,
+        avatarUrl: this.state.avatar,
+        notifications: this.state.notifications,
+        bio: this.state.bio,
+      }),
+      success: 
+        console.log(data)
+      // data => {
+        // this.props.getPostAddShowData(data);
+        // this.props.changeView('DisplaySchedule');
+      // }
+    });
   }
 
 	render () {
@@ -58,7 +92,7 @@ class EditProfile extends Component {
         <Grid>
           <Grid.Column floated='right' width={5}>
             <Card>
-              <Image src={this.state.avatar} />
+              <Image src={this.state.avatarUrl} />
             <Card.Content>
               <Card.Header>{this.state.userName}</Card.Header>
               <Card.Meta>Joined in 2017</Card.Meta>
@@ -70,19 +104,43 @@ class EditProfile extends Component {
                 {this.state.userNum}
               </a>
             </Card.Content>
-          </Card>
-        </Grid.Column>
+            </Card>
+          </Grid.Column>
 
-        <Grid.Column floated='left'  width={10}>
-          <Form>
-            <Form.Group widths='equal'>
-              <Form.Field id='form-input-control-phoneNumber' control={Input} label='Phone Number' placeholder={this.state.userNum} onChange={this.handleChangeNumber} />
-            </Form.Group>
-            <Form.Field id='form-textarea-control-avatar' control={Input} label='Avatar' placeholder={this.state.avatar} onChange={this.handleChangeAvatar}/>
-            <Form.Field id='form-textarea-control-bio' control={Input} label='Bio' placeholder={this.state.bio} onChange={this.handleChangeBio}/>
-            <Form.Field id='form-button-control-public' control={Button} content='Confirm' label='Submit Changes' onClick={this.updateEverything} />
-            <Button onClick={this.goToHome.bind(this)}>Go Home</Button>
-          </Form>
+          <Grid.Column floated='left'  width={10}>
+            <Container>
+              <div>
+                <p>Current Number for Notifications: <strong>{this.state.userNum}</strong></p>
+                <p>Current Bio: {this.state.bio}</p>
+                <p>Notifications are currently: {this.state.notifications === true ? ' ON' : ' OFF'}</p>
+              </div>
+              <Divider hidden/>
+              <Form>
+              <Form.Group widths='equal'>
+                <Form.Field id='form-input-control-phoneNumber' control={Input} label='Update Phone Number' placeholder={this.state.userNum} onChange={this.handleChangeNumber} />
+                </Form.Group>
+              </Form>
+              <Form>
+                <Form.Field id='form-textarea-control-avatar' control={Input} label='Update Avatar' placeholder='Paste link here' onChange={this.handleChangeAvatar}/>
+                <Form.Field id='form-textarea-control-bio' control={TextArea} label='Update Bio' placeholder='Tell us about yourself!' onChange={this.handleChangeBio}/>
+              </Form>
+
+            </Container>
+
+          <Divider hidden/>
+          
+          <Button.Group>
+            <Button onClick={this.toggleNotificationOff}>Notifications Off</Button>
+            <Button.Or />
+            <Button onClick={this.toggleNotificationOn} positive>Notifcations On</Button>
+          </Button.Group>
+
+          <Divider hidden/>
+
+          <Container>
+            <Button id='form-button-control-public' onClick={this.updateEverything} color='blue'>Update Profile</Button>
+            <Button onClick={this.goToHome.bind(this)}>Home</Button>
+          </Container>
         </Grid.Column>
       </Grid>
 		</div>

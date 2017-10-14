@@ -12,7 +12,6 @@ class Profile extends Component {
       phonenumber: '',
       name: 'Devon',
       userNum: '1234567890',
-			avatar: 'https://i.imgur.com/bVhY86x.jpg',
 			bio: 'I created an account on Watch Potato so that I can watch my shows at specific times, have someone remind me to watch and even rate them!',
 			ratedShowsMovies: data
     }
@@ -31,6 +30,11 @@ class Profile extends Component {
 
   goToHome(){
     this.props.changeView('UserHome');
+  }
+
+  componentWillMount() {
+    console.log('mounted');
+    console.log(this.props.userAvatarUrl)
   }
 
 	render () {

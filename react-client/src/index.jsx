@@ -16,12 +16,12 @@ class App extends React.Component {
     super(props);
     this.state = { 
       view: 'Home',
-      username: '',
-      userbio: '',
-      userAvatar: '',
+      userBio: '',
+      userAvatarUrl: '',
+      userNumber: '',
       userNotifications: false,
-      usershows: [],
-      usermovies: [],
+      userShows: [],
+      userMovies: [],
       showList: [{
         firstAirDate: '2000-01-01',
         genres: ['Daniel'],
@@ -64,8 +64,16 @@ class App extends React.Component {
 
   updateUserProfile(data) {
     console.log('updating profile state')
-    setTimeout(function(){}, 1000)
     console.log('this is the data after signing logging in:',  data);
+    console.log(data.info.phone)
+    console.log(data.info.avatarUrl)
+    
+    this.setState({
+      userBio: data.info.bio,
+      userAvatarUrl: data.info.avatarUrl,
+      userNotifications: data.info.notifications,
+      userNumber: data.info.phone
+    })
   }
 
 
@@ -177,6 +185,13 @@ class App extends React.Component {
     } else if (this.state.view === 'Profile') {
       return <Profile
         changeView = { this.changeView.bind(this) } 
+        userName = {this.state.username}
+        userAvatarUrl = {this.state.userAvatarUrl}
+        userBio = {this.state.userBio}
+        userNumber = {this.state.userNumber}
+        userNotifications = {this.state.userNotifications}
+        userShows = {this.state.userShows}
+        userMovies = {this.state.userMovies}
       />
     } else if (this.state.view === 'EditProfile') {
       return <EditProfile

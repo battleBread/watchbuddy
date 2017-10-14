@@ -1,7 +1,7 @@
 const { User } = require('../../database-postgres');
 const { Show, Movie, Event } = require('../../database-mongo');
 const Promise = require('bluebird');
-const { pickBy } = require('lodash');
+const { pickBy, assignIn } = require('lodash');
 
 module.exports = {
   GET: ({ params: { username }}, res) => {
@@ -36,13 +36,30 @@ module.exports = {
           const { episodes:newEpisodes } = show;
           const theShow = pickBy(show, (val, key) => key !== 'episodes');
           Show.update({ userId: id, title: show.title }, theShow, { upsert: true })
-          .then(result => console.log(result))
-          .then(Show.find({ userId: id, title: show.title }))
-          // .then({ episodes } => {
-          //   newEpisodes.forEach(({episode, season}, i) => {
-          //     if episodes.
-          //   })
-          // })
+            .then(result => console.log(result))
+            .then(Show.findOne({ userId: id, title: show.title })
+              .then(({ episodes }) => {
+                newEpisodes.forEach(ep => {
+                  const found = episodes.reduce((memo, curr) => {
+                    // console.log("CURRENT", curr);
+                    if (memo) return memo;
+                    if ((curr.season===ep.season)&&(curr.episode===ep.episode)) {
+                      assignIn(curr, ep);
+                      console.log(episodes);
+                      return true;
+                    }
+                    return memo;
+                  }, false);
+                  // console.log('found', found);
+                  if (!found) {
+                    episodes.push(ep);
+                    // console.log("episodes: ", episodes);
+                  }
+                })
+                Show.update({ userId: id, title: show.title }, ({ episodes }))
+                  .then(result => console.log(result));
+              })
+            .catch(err => console.log(err)));
         });
         movies.map(movie => Movie.update({ userId: id, title: movie.title }, movie, { upsert: true })
           .then(result => console.log(result)));

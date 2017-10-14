@@ -17,6 +17,11 @@ class App extends React.Component {
     this.state = { 
       view: 'Home',
       username: '',
+      userbio: '',
+      userAvatar: '',
+      userNotifications: false,
+      usershows: [],
+      usermovies: [],
       showList: [{
         firstAirDate: '2000-01-01',
         genres: ['Daniel'],
@@ -45,7 +50,24 @@ class App extends React.Component {
 
   getUsername(username) {
     this.setState({ username });
+    console.log('username: ', username)
+
+    $.ajax({
+      url: `/user/${username}`,
+      method: 'GET',
+      contentType: 'application/json',
+      data: JSON.stringify({username: this.state.username}),
+      success: (data) => this.updateUserProfile(data),
+      error: () => this.renderErrorMessage()
+    });
   }
+
+  updateUserProfile(data) {
+    console.log('updating profile state')
+    setTimeout(function(){}, 1000)
+    console.log('this is the data after signing logging in:',  data);
+  }
+
 
   getShowList(data){
     this.setState({ showList: data.tv, movieList: data.movie })

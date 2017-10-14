@@ -41,7 +41,7 @@ class Login extends Component {
 
   postLogin(data) {
     this.props.getUsername(data);
-    this.props.changeView('UserHome');
+    this.props.changeView('Profile');
   }
 
   renderErrorMessage() {

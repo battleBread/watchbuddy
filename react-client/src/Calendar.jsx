@@ -31,7 +31,6 @@ class newCalendar extends Component {
     this.handleClientLoad = this.handleClientLoad.bind(this);
     this.initClient = this.initClient.bind(this);
     this.updateSigninStatus = this.updateSigninStatus.bind(this);
-    this.appendPre = this.appendPre.bind(this);
     this.listUpcomingEvents = this.listUpcomingEvents.bind(this);
     this.authorizeButton = document.getElementById('authorize-button');
     this.signoutButton = document.getElementById('signout-button');
@@ -84,12 +83,6 @@ class newCalendar extends Component {
 
   handleSignoutClick(){
     gapi.auth2.getAuthInstance().signOut();
-  }
-
-  appendPre(message) {
-    var pre = document.getElementById('content');
-    var textContent = document.createTextNode(message + '\n');
-    pre.appendChild(textContent);
   }
 
   listUpcomingEvents() {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar.jsx';
-import { Container, Header, Icon, Message, Transition, Button } from 'semantic-ui-react';
+import { Container, Header, Icon, Message, Transition, Button, Divider } from 'semantic-ui-react';
+import ShowList from './components/ShowList.jsx';
 import BigCalendar from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
@@ -157,6 +158,39 @@ class newCalendar extends Component {
             style={{height: 800}}
           />
           </div>
+
+          <Divider horizontal>Add More Shows</Divider>
+          
+          <ShowList 
+              getShow = { this.props.getShow } 
+              getMovie = { this.props.getMovie }
+              isTVShow = { this.state.isTVShow }
+              showList = { this.props.showList }
+              movieList = { this.props.movieList }
+              addedShowEpisodes = { this.state.addedShowEpisodes }
+              showName = { this.props.showName }
+              loggedIn = 'true'
+              addShow = { this.props.addShow }
+              showSelected = { this.props.showSelected }
+            />
+            {this.state.showSelected === 'true' && this.state.isTVShow ?
+            <AddShow
+              showId = { this.props.showId } 
+              showName = { this.props.showName }
+              addedShowEpisodes = { this.props.addedShowEpisodes }
+              username = { this.props.username }
+              changeView = { this.props.changeView }
+              getPostAddShowData = { this.props.getPostAddShowData }
+            />
+            : this.state.showSelected === 'true' ?
+              <AddMovie
+                movieId = { this.props.showId } 
+                movieName = { this.props.showName }
+                username = { this.props.username }
+                changeView = { this.props.changeView }
+                getPostAddShowData = { this.props.getPostAddShowData }
+              />
+            : null}
           </Container>
 
         </div>
@@ -165,5 +199,3 @@ class newCalendar extends Component {
 } 
 
 export default newCalendar;
-
-

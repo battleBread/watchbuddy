@@ -3,7 +3,7 @@ import ShowList from './components/ShowList.jsx';
 import Navbar from './components/Navbar.jsx';
 import AddShow from './components/AddShow.jsx';
 import AddMovie from './components/AddMovie.jsx';
-import { Container, Header, Icon, Message, Transition, Button } from 'semantic-ui-react'
+import { Container, Header, Icon, Message, Transition, Button, Divider } from 'semantic-ui-react'
 
 class UserHome extends Component {
   constructor(props) {
@@ -33,7 +33,8 @@ class UserHome extends Component {
         <Container>
           <div>
             <Header as='h3' textAlign='center'>
-              <Icon name='film'/> Welcome!
+              {/* <Icon name='film'/>  */}
+              Welcome {this.props.username}!
             </Header>
 
             <Message>
@@ -43,10 +44,10 @@ class UserHome extends Component {
               <p>We see you haven't added a TV show yet. Search for your favorite TV show and click the calendar icon to add it to your watch list!</p>
             </Message>
 
-            <div>
-            <Button onClick={()=>{this.props.changeView('Calendar')}}><Icon name='calendar'/>VIEW CALENDAR</Button>
-            </div>
-            
+            <Button fluid onClick={()=>{this.props.changeView('Calendar')}}><Icon name='calendar'/>VIEW CALENDAR</Button>
+
+            <Divider></Divider>
+
             <ShowList 
               getShow = { this.props.getShow } 
               getMovie = { this.props.getMovie }

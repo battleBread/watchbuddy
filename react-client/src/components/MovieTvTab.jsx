@@ -20,7 +20,7 @@ class MovieTvTab extends Component {
 
     return (
       <div>
-        <Menu pointing secondary inverted>
+        <Menu pointing secondary widths={3}>
           <Menu.Item name='TV' active={activeItem === 'TV'} onClick={this.handleItemClick}>
             TV <Label color='orange'>{this.props.showList.length}</Label>
           </Menu.Item>
@@ -29,10 +29,10 @@ class MovieTvTab extends Component {
           </Menu.Item>
         </Menu>
         <div> {activeItem === 'TV'
-          ? <Grid divided='vertically' inverted>
+          ? <Grid divided='vertically' >
               { this.props.showList.map((show, i) => <ShowEntry show={show} key={i} getShow={this.props.getShow} loggedIn={this.props.loggedIn} addShow={this.props.addShow} isTVShow={true}/>) }
             </Grid>
-          : <Grid divided='vertically' inverted>
+          : <Grid divided='vertically' >
               { this.props.movieList.map((show, i) => <ShowEntry show={show} key={i} getMovie={this.props.getMovie} loggedIn={this.props.loggedIn} addShow={this.props.addShow} isTVShow={false}/>) }
             </Grid>}
         </div>

@@ -51,7 +51,7 @@ class Navbar extends Component {
 
         {this.state.loggedIn === 'true' ?
           <Menu.Item>
-            <Button icon color ='black' onClick={this.goToProfilePage.bind(this)}> Go to Profile </Button>
+            <Button icon color ='blue' onClick={this.goToProfilePage.bind(this)}> Go to Profile </Button>
           </Menu.Item>
         : <Menu.Item>
           </Menu.Item>

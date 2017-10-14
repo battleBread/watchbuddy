@@ -46,9 +46,8 @@ class UserHome extends Component {
               <p>We see you haven't added a TV show yet. Search for your favorite TV show and click the calendar icon to add it to your watch list!</p>
             </Message>
 
-            <Button fluid onClick={()=>{this.props.changeView('Calendar')}}><Icon name='calendar'/>VIEW CALENDAR</Button>
-            {/* <Divider hidden></Divider>
-            <Button fluid onClick={()=>{this.props.changeView('Profile')}}><Icon name='calendar'/>GO TO PROFILE</Button> */}
+            <Button fluid onClick={()=>{this.props.changeView('Calendar')}} basic color ='blue'><Icon name='calendar'/>VIEW CALENDAR</Button>
+            
             <Divider></Divider>
 
             <ShowList 

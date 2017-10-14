@@ -15,11 +15,11 @@ class Home extends Component {
         <Transition animation='fade up' duration={2000} transitionOnMount={true}>
           <div>
           <Divider hidden></Divider> 
-          <Grid>
+          <Grid centered>
             <Grid.Column width={3}>
               <Image src='http://www.redgem.com.au/NEW/wp-content/uploads/2017/02/potato.jpg' />
             </Grid.Column>
-            <Grid.Column width={10}>
+            <Grid.Column width={7}>
               <Header as='h3' icon textAlign='center' inverted color='orange'>
                 <Header.Content>
                     No time to catch up on your favorite TV show?
@@ -42,7 +42,7 @@ class Home extends Component {
                 <Header as='h3' icon textAlign='center' inverted color='orange'>
                 <Icon name='checked calendar' circular />
                 <Header.Content>
-                  Schedule your Shows
+                  Schedule Your Shows
                 </Header.Content>
                 </Header>      
               </Grid.Column>    
@@ -50,7 +50,7 @@ class Home extends Component {
                 <Header as='h3' icon textAlign='center' inverted color='orange'>
                 <Icon name='tv' circular />
                 <Header.Content>
-                  Watch your Shows!
+                  Watch Your Shows!
                 </Header.Content>
                 </Header>      
               </Grid.Column>   

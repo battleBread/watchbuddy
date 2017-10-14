@@ -43,7 +43,7 @@ class ShowList extends Component {
 
   render() { 
     return (<div> { this.state.showSelected === 'true'
-    ? <Segment inverted color='grey'>
+    ? <Segment  color='orange'>
         <Container>
         <Button fluid icon size='big' color='orange'>
           { this.props.showName } <Icon name='checked calendar'/>
@@ -51,12 +51,12 @@ class ShowList extends Component {
         </Container>
       </Segment> 
     : <div> { this.state.loaded === 'true' 
-        ? <Segment inverted>
+        ? <Segment >
             <MovieTvTab showList={this.state.showList} movieList={this.state.movieList} getShow={this.props.getShow} getMovie={this.props.getMovie} loggedIn={this.props.loggedIn} addShow={this.props.addShow} />
           </Segment> 
       : <Segment>
-          <Dimmer active>
-            <Loader size='massive'>Loading</Loader>
+          <Dimmer active inverted>
+            <Loader active size='large' inline='centered'></Loader>
           </Dimmer>
         </Segment>}
       </div>

@@ -12,8 +12,8 @@ var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/
 var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
 var onload="this.onload=function(){};handleClientLoad()";
 var onreadystatechange="if (this.readyState === 'complete') this.onload()";
-var authorize = {display: 'none', float: 'left'};
-var signout = {display: 'none', float: 'left'};
+var authorize = {display: 'none', float:'left'};
+var signout = {display: 'none', float:'left'};
 
 BigCalendar.momentLocalizer(moment);
 let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
@@ -130,10 +130,10 @@ class newCalendar extends Component {
 
       <Container>
         <div>
-          <Button left color='red' id="authorize-button" style={authorize} onClick={this.handleAuthClick}><Icon name ='google plus square'/>Connect your Google Calendar</Button>
-          <Button left color='red' id="signout-button" style={authorize} onClick={this.handleSignoutClick}><Icon name ='google plus square'/>Sign Out</Button>
-          <Button left onClick={()=>{this.props.changeView('UserHome')}}><Icon name='user circle outline'/>Back to Profile</Button>
-      </div>
+          <Button color='red' id="authorize-button" style={authorize} onClick={this.handleAuthClick}><Icon name ='google plus square'/>Connect Google Calendar</Button>
+          <Button color='red' id="signout-button" style={authorize} onClick={this.handleSignoutClick}><Icon name ='google plus square'/>Sign Out</Button>
+          <Button onClick={()=>{this.props.changeView('UserHome')}}><Icon name='home'/>Home</Button>
+        </div>
 
       <Divider hidden></Divider>
 

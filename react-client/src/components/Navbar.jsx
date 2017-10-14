@@ -40,11 +40,6 @@ class Navbar extends Component {
     this.props.changeView('Profile');
   }
 
-  goToEditProfilePage() {
-    console.log('profile clicked');
-    this.props.changeView('EditProfile');
-  }
-
   render () {
     return (
 

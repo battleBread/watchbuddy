@@ -9,52 +9,92 @@ class EditProfile extends Component {
 		super(props);
 		this.state = {
       phonenumber: '',
-      name: 'Devon',
+      name:'',
+      bio:'',
+      newAvatar: '',
+      userName: 'Devon',
       userNum: '1234567890',
 	  avatar: 'https://i.imgur.com/bVhY86x.jpg',
 	  bio: 'I created an account on Watch Potato so that I can watch my shows at specific times, have someone remind me to watch and even rate them!'
     }
-    this.updateRating = this.updateRating.bind(this);
-    this.updateReview = this.updateReview.bind(this);
-    this.updateProfilePic = this.updateProfilePic.bind(this);
-    this.updateBio = this.updateBio.bind(this);
-    this.updateNumber = this.updateNumber.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.updateEverything = this.updateEverything.bind(this);
+    this.handleChangeName = this.handleChangeName.bind(this);
+    this.handleChangeBio = this.handleChangeBio.bind(this);
+    this.handleChangeNumber = this.handleChangeNumber.bind(this);
+    this.handleChangeAvatar = this.handleChangeAvatar.bind(this);
+    
     
   }
   
-  handleChange(event) {
-    this.setState({phonenumber: event.target.value});
-    console.log(this.state.phonenumber)
+  handleChangeName(event) {
+    this.setState({userName: event.target.value});
+    console.log(this.state.userName)
   }
-  updateNumber() {
-    //this will route to server to update the users Phone number for notifcations
-    console.log('updating the users PHONENUMBER')
-    let phonenum = this.state.phonenumber;
-    //ajax call to server to update phonenum 
+  handleChangeBio(event) {
+    this.setState({bio: event.target.value});
+    console.log(this.state.bio)
   }
-  updateBio() {
-    //this will route to server to update the users Bio
-    console.log('updating the users bio')
+  handleChangeNumber(event) {
+    this.setState({userNum: event.target.value});
+    console.log(this.state.userNum)
   }
-  updateProfilePic() {
-    //this will route to server to update the users profile picture
-    console.log('updating the users profile picture')
+  handleChangeAvatar(event) {
+    this.setState({newAvatar: event.target.value});
+    console.log(this.state.newAvatar)
   }
-  updateRating() {
-    //this will route to server to update rating for user-movie/show
-    console.log('updating show RATING!')
-  }
-  updateReview() {
-    //this will route to server to update review for user-move/show
-    console.log('updating show REVIEW!')
+
+  updateEverything() {
+
   }
 
 	render () {
 		return (
+      <Transition animation='fade up' duration={2000} transitionOnMount={true}>      
 			<div>
 				<NavBar
 				loggedIn='true' />	
+
+        <Grid>
+    <Grid.Column floated='right' width={5}>
+      <Card>
+          <Image src={this.state.avatar} />
+          <Card.Content>
+            <Card.Header>{this.state.userName}</Card.Header>
+            <Card.Meta>Joined in 2017</Card.Meta>
+            <Card.Description>{this.state.bio}</Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            <a>
+              <Icon name='call' />
+              {this.state.userNum}
+            </a>
+          </Card.Content>
+        </Card>
+    </Grid.Column>
+    <Grid.Column floated='left'  width={10}>
+      <Form>
+        <Form.Group widths='equal'>
+          <Form.Field id='form-input-control-name' control={Input} label='Name' placeholder={this.state.name} onChange={this.handleChangeName} />
+          <Form.Field id='form-input-control-phoneNumber' control={Input} label='Phone Number' placeholder={this.state.userNum} onChange={this.handleChangeNumber} />
+        </Form.Group>
+        <Form.Field id='form-textarea-control-bio' control={Input} label='Bio' placeholder={this.state.bio} onChange={this.handleChangeBio}/>
+        <Form.Field id='form-button-control-public' control={Button} content='Confirm' label='Submit Changes' />
+      </Form>
+
+    </Grid.Column>
+  </Grid>
+
+			</div>
+      </Transition>
+		)
+	}
+
+}
+
+export default EditProfile;
+
+/*
+
         <Item.Group divided>
         <Item>
       <Item.Image src={this.state.avatar} />
@@ -74,17 +114,10 @@ class EditProfile extends Component {
       </Item.Content>
     </Item>
     </Item.Group>
-          
 
-			</div>
-		)
-	}
 
-}
 
-export default EditProfile;
 
-/*
 				   	  <Container>
 			          <Message> 
                   <Message.Header>

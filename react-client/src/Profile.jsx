@@ -45,14 +45,10 @@ class Profile extends Component {
     //ajax call to update user/username/update notifications boolean
   }
 
-<<<<<<< HEAD
-=======
-  goToHome() {
-    console.log('Going Home');
+  goToHome(){
     this.props.changeView('UserHome');
   }
 
->>>>>>> code clean up before rebase
 	render () {
 		return (
       <Transition animation='fade up' duration={1500} transitionOnMount={true}>

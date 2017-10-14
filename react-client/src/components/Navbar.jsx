@@ -46,11 +46,7 @@ class Navbar extends Component {
       <Menu className = "ui inverted menu" inverted color='orange'>
 
         <Menu.Item>
-<<<<<<< HEAD
           <h2><Icon name = 'tv' /> <Icon name = 'child' /> WatchPotato</h2>
-=======
-          <h2><Icon name = 'film' /> <Icon name = 'child' /> WatchPotato</h2>
->>>>>>> code clean up before rebase
         </Menu.Item>
 
         {this.state.loggedIn === 'true' ?

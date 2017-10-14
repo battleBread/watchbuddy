@@ -80,29 +80,32 @@ class AddShow extends Component {
     //make ajax call to add with all info
     $.ajax({
       method: 'POST',
-      url: '/addshow',
+      // url: '/addshow',
+      url: `/user/:${this.state.username}`,
       contentType: 'application/json',
       data: JSON.stringify({
-        username: this.state.username,
-        showId: this.state.showId,
-        showName: this.props.showName,
-        season: this.state.selectedSeason,
-        episode: this.state.selectedEpisode,
-        startDate: this.state.startDatejs,
-        endDate: this.state.endDatejs,
-        monday: this.state.monday,
-        tuesday: this.state.tuesday,
-        wednesday: this.state.wednesday,
-        thursday: this.state.thursday,
-        friday: this.state.friday,
-        saturday: this.state.saturday,
-        sunday: this.state.sunday,
-        hours: this.state.selectedHour
+        // restructure data below:
+        // username: this.state.username,
+        // showId: this.state.showId,
+        // showName: this.props.showName,
+        // season: this.state.selectedSeason,
+        // episode: this.state.selectedEpisode,
+        // startDate: this.state.startDatejs,
+        // endDate: this.state.endDatejs,
+        // monday: this.state.monday,
+        // tuesday: this.state.tuesday,
+        // wednesday: this.state.wednesday,
+        // thursday: this.state.thursday,
+        // friday: this.state.friday,
+        // saturday: this.state.saturday,
+        // sunday: this.state.sunday,
+        // hours: this.state.selectedHour
       }),
       success: data => {
         this.props.getPostAddShowData(data);
         this.props.changeView('DisplaySchedule');
-      }
+      },
+      error: err => {console.log(err);}
     });
   }
 

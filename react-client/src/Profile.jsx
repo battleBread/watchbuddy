@@ -10,9 +10,9 @@ class Profile extends Component {
 		this.state = {
       notification: true,
       phonenumber: '',
-      name: 'Devon',
-      userNum: '1234567890',
-			bio: 'I created an account on Watch Potato so that I can watch my shows at specific times, have someone remind me to watch and even rate them!',
+      name: '',
+      userNum: '',
+			bio: '',
 			ratedShowsMovies: data
     }
     this.scheduleShow = this.scheduleShow.bind(this);

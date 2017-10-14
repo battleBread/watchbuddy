@@ -28,7 +28,6 @@ class Navbar extends Component {
       contentType: 'application/json',
       data: JSON.stringify({term: this.state.term}),
       success: data => {
-        console.log(data);
         this.props.getShowList(data)
       },
       error: data => console.log('err from search submit')
@@ -36,7 +35,6 @@ class Navbar extends Component {
   }
 
   goToProfilePage() {
-    console.log('profile clicked');
     this.props.changeView('Profile');
   }
 

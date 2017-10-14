@@ -11,13 +11,11 @@ class Profile extends Component {
       phonenumber: '',
       name: 'Devon',
       userNum: '1234567890',
-			avatar: 'https://i.imgur.com/bVhY86x.jpg',
-			bio: 'I created an account on Watch Potato so that I can watch my shows at specific times, have someone remind me to watch and even rate them!',
-			ratedShowsMovies: data
+	  avatar: 'https://i.imgur.com/bVhY86x.jpg',
+	  bio: 'I created an account on Watch Potato so that I can watch my shows at specific times, have someone remind me to watch and even rate them!'
     }
     this.updateRating = this.updateRating.bind(this);
     this.updateReview = this.updateReview.bind(this);
-    this.scheduleShow = this.scheduleShow.bind(this);
     this.updateProfilePic = this.updateProfilePic.bind(this);
     this.updateBio = this.updateBio.bind(this);
     this.updateNumber = this.updateNumber.bind(this);
@@ -60,9 +58,6 @@ class Profile extends Component {
     
   }
 
-  scheduleShow() {
-    console.log('SCHEDULING show!')
-  }
 
 //profile page should have two views [not logged in, logged in]
 //if the user is not logged in, we should redirect the user to log in page
@@ -83,50 +78,16 @@ class Profile extends Component {
         </Item.Meta>
         <Item.Description>{this.state.bio}</Item.Description>
         <Item.Extra>
-          Current Number in use for Notifications: <strong>{this.state.userNum}</strong>
-          <Button.Group>
-            <Button>Notifcations Off</Button>
-            <Button.Or />
-            <Button positive>Notifcations On</Button>
-          </Button.Group>
-          
+            
+          Current Number in use for Notifications: {this.state.userNum}
+          <Input placeholder = 'Change Phone Number' onChange = { this.handleChange.bind(this) } /> 
+          <Button size='mini' icon color ='black' onClick={this.updateNumber}>Update!</Button>
+
         </Item.Extra>
       </Item.Content>
     </Item>
     </Item.Group>
-          <Table celled inverted selectable>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Movie Poster</Table.HeaderCell>
-              <Table.HeaderCell>Title</Table.HeaderCell>
-              <Table.HeaderCell>Your Rating</Table.HeaderCell>
-              <Table.HeaderCell>Watch again!</Table.HeaderCell>
-              <Table.HeaderCell>Your Review</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-      
-          <Table.Body>
-
-            {this.state.ratedShowsMovies.map(movie => 
-                <Table.Row>
-                  <Table.Cell>
-                  <Image src={movie.poster}/>
-                  </Table.Cell>
-                  <Table.Cell singleLine>{movie.title}</Table.Cell>
-                  <Table.Cell>
-                    <Rating icon='star' defaultRating={movie.rating} maxRating={5} />
-                  </Table.Cell>
-                  <Table.Cell textAlign='right'>
-                    <Button icon color ='blue' onClick={this.scheduleShow}> Schedule </Button>
-                  </Table.Cell>
-                  <Table.Cell>
-                    {movie.review}
-                  </Table.Cell>
-                </Table.Row>
-            )}
-
-          </Table.Body>
-        </Table>
+          
 
 			</div>
 		)

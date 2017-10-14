@@ -23,7 +23,7 @@ class App extends React.Component {
       userShows: [],
       userMovies: [],
       showList: [{
-        firstAirDate: '2000-01-01',
+        firstAirDate: '2010-01-01',
         genres: ['Daniel'],
         image: '',
         summary: 'Default summary'

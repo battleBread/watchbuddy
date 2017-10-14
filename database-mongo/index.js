@@ -19,7 +19,7 @@ module.exports = {
 
 const simpsons = new Show({
   title: 'The Simpsons',
-  userId: 3,
+  userId: 2,
   rating: 5,
   episodes: [
     {
@@ -39,6 +39,8 @@ const simpsons = new Show({
     },
   ]
 });
+
+// simpsons.save();
 
 /**
  * ////////////////////////

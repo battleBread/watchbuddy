@@ -40,11 +40,6 @@ class Navbar extends Component {
     this.props.changeView('Profile');
   }
 
-  goToEditProfilePage() {
-    console.log('profile clicked');
-    this.props.changeView('EditProfile');
-  }
-
   render () {
     return (
 
@@ -55,7 +50,6 @@ class Navbar extends Component {
         </Menu.Item>
         <Menu.Item>
         <Button icon color ='black' onClick={this.goToProfilePage.bind(this)}> Go to Profile </Button>
-        <Button icon color ='black' onClick={this.goToEditProfilePage.bind(this)}> Edit Profile </Button>
         </Menu.Item>
         <Menu.Menu position = 'right'>
           <Menu.Item>

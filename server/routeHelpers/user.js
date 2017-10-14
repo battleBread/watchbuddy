@@ -22,6 +22,7 @@ module.exports = {
       });
   },
   POST: ({ body: { events = [], shows = [], movies = [] }, params: { username }}, res) => {
+    console.log('username: ', username);
     if (!(events.length || shows.length || movies.length)) {
       res.send('Nothing to change');
     } else if (!username) {

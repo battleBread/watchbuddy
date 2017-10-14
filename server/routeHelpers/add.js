@@ -5,6 +5,7 @@ module.exports = {
 	POST: (req, res) => {
 		const { id } = req.body;
 		moviedb.details(id, data => { 
+			console.log('show data: ', data);
 			const { seasons, episode_run_time } = JSON.parse(data);
 
 			const obj = seasons.reduce((memo, el) => {

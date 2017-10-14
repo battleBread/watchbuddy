@@ -49,7 +49,8 @@ class AddShow extends Component {
       friday: 0,
       saturday: 0,
       sunday: 0,
-      username: ''
+      username: '',
+      runtime: 0
     };
   }
 
@@ -59,13 +60,17 @@ class AddShow extends Component {
 
     //handle showId
     this.setState({ showId: episodes.showId });
+    this.setState({ runtime: episodes.addedShowEpisodes.runtime})
 
     //handle show info
     //addedShowEpisodes is an object where each key has an array with elements:
       //[0] = number of episodes
       //[1] = season poster
     let seasonsObj = episodes.addedShowEpisodes.seasons;
-    this.setState({originalSeasonObj: seasonsObj});
+    console.log(seasonsObj)
+    this.setState({
+      originalSeasonObj: seasonsObj,
+      seasonsObj: seasonsObj});
     let seasonArr = [];
     let episodeArr = [];
     _.each(seasonsObj, (value, key, index) => {
@@ -77,36 +82,116 @@ class AddShow extends Component {
   }
 
   handleSubmit() {
+    // create events array
+    var today = new Date();
+    var seasonObj = this.state.seasonsObj;
+    var season = 1;
+    // console.log(seasonObj[season.toString()]);
+
+    var runtimeInHours = this.state.runtime / 60;
+    var freeHours = this.state.selectedHour;
+    var numEpisodesPerDay = Math.floor(freeHours / runtimeInHours);
+    // console.log(numEpisodes)
+    var nextEpisode = (season, episode) => {
+      var numEpisodesInSeason = seasonObj[season.toString()][0];
+      if (episode < numEpisodesInSeason) {
+        return [season, episode + 1];
+      } else {
+        season = season + 1;
+        if (seasonObj[season.toString()]) {
+          return [season, 1];
+        } else {
+          return false;
+        }
+      }
+    }
+    // console.log(nextEpisode(Number(this.state.selectedSeason), Number(this.state.selectedEpisode)));
+    var getEpisodesForDay = (season, episode) => {
+      var episodes = [];
+      var counter = 1;
+      var episode = episode
+      var season = season
+      console.log(numEpisodesPerDay)
+      while (counter <= numEpisodesPerDay) {
+        if (episodes.length === 0) {
+          // if (nextEpisode(season, episode)) {
+          //   console.log('got here')
+          //   episodes.push(nextEpisode(season, episode))
+          // }
+          episodes.push([season, episode])
+          counter++
+        } else {
+          var lastScheduledSeason = episodes[episodes.length - 1][0];
+          var lastScheduledEpisode = episodes[episodes.length - 1][1];
+          if (nextEpisode(lastScheduledSeason, lastScheduledEpisode)) {
+            console.log('got here too')
+            episodes.push(nextEpisode(lastScheduledSeason, lastScheduledEpisode))
+          }
+          counter++
+        }
+      }
+      return episodes;
+    }
+    // console.log(getEpisodesForDay(Number(this.state.selectedSeason), Number(this.state.selectedEpisode)));
+    var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    //determine available days
+    var availDays = [];
+    days.forEach((day, index) => {
+      if (this.state[day] === 1) {
+        availDays.push(index)
+      }
+    })
+    // console.log(availDays);
+    
+
+
     //make ajax call to add with all info
-    $.ajax({
-      method: 'POST',
-      // url: '/addshow',
-      url: `/user/:${this.state.username}`,
-      contentType: 'application/json',
-      data: JSON.stringify({
-        // restructure data below:
-        // username: this.state.username,
-        // showId: this.state.showId,
-        // showName: this.props.showName,
-        // season: this.state.selectedSeason,
-        // episode: this.state.selectedEpisode,
-        // startDate: this.state.startDatejs,
-        // endDate: this.state.endDatejs,
-        // monday: this.state.monday,
-        // tuesday: this.state.tuesday,
-        // wednesday: this.state.wednesday,
-        // thursday: this.state.thursday,
-        // friday: this.state.friday,
-        // saturday: this.state.saturday,
-        // sunday: this.state.sunday,
-        // hours: this.state.selectedHour
-      }),
-      success: data => {
-        this.props.getPostAddShowData(data);
-        this.props.changeView('DisplaySchedule');
-      },
-      error: err => {console.log(err);}
-    });
+    // $.ajax({
+    //   method: 'POST',
+    //   // url: '/addshow',
+    //   url: `/user/${this.state.username}`,
+    //   contentType: 'application/json',
+    //   data: JSON.stringify({
+    //     shows:[{
+    //       title: this.props.showName,
+    //       movieDB: this.state.showId,
+    //       // rating: 1, //Need to send this data to client first
+    //       episodes: [{
+    //         // title: this.state.selectedEpisode, //Need to get the episode name from movieDB
+    //         // rating: 1, //Need to send this data to client first
+    //         season: this.state.selectedSeason,
+    //         episode: this.state.selectedEpisode, 
+    //         runtime: this.state.runtime //Need to send this data to the client first
+    //       }]
+    //     }],
+    //     events: [{
+    //       title: `${this.props.showName} S${this.state.selectedSeason}E${this.state.selectedEpisode}`,
+    //       start: this.state.startDatejs,
+    //       end: this.state.startDatejs
+    //     }]
+    //     // restructure data below:
+    //     // username: this.state.username,
+    //     // showId: this.state.showId,
+    //     // showName: this.props.showName,
+    //     // season: this.state.selectedSeason,
+    //     // episode: this.state.selectedEpisode,
+    //     // startDate: this.state.startDatejs,
+    //     // endDate: this.state.endDatejs,
+    //     // monday: this.state.monday,
+    //     // tuesday: this.state.tuesday,
+    //     // wednesday: this.state.wednesday,
+    //     // thursday: this.state.thursday,
+    //     // friday: this.state.friday,
+    //     // saturday: this.state.saturday,
+    //     // sunday: this.state.sunday,
+    //     // hours: this.state.selectedHour
+    //   }),
+    //   success: data => {
+    //     this.props.getPostAddShowData(data);
+    //     this.props.changeView('DisplaySchedule');
+    //   },
+    //   error: err => {console.log(err);}
+    // });
   }
 
   handleDay(day){
@@ -147,6 +232,7 @@ class AddShow extends Component {
   }
 
   handleSelectedEpisode(event, { value }) {
+    // let valueNum = parseInt(value)
     this.setState({ selectedEpisode: value })
   }
 

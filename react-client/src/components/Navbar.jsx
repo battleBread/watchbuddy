@@ -47,6 +47,7 @@ class Navbar extends Component {
           <h2><Icon name = 'tv' /> <Icon name = 'child' /> WatchPotato</h2>
         </Menu.Item>
 
+
         {this.state.loggedIn === 'true' ?
           <Menu.Item>
             <Button icon color ='blue' onClick={this.goToProfilePage.bind(this)}> Go to Profile </Button>
@@ -54,6 +55,10 @@ class Navbar extends Component {
         : <Menu.Item>
           </Menu.Item>
           }
+
+        <Button icon color ='blue' onClick={this.goToProfilePage.bind(this)}> Go to Profile </Button>
+
+
 
         <Menu.Menu position = 'right'>
           <Menu.Item>

@@ -39,22 +39,6 @@ module.exports = {
           image: `https://image.tmdb.org/t/p/w500/${el.backdrop_path}`,
         });
       });
-<<<<<<< HEAD
-    });
-    // res.send(array);
-    return moviedb.searchMovies(title)
-  })
-  .then(data => {
-    var searched = JSON.parse(data).results.splice(0, 10);
-    // console.log('first movie: ', searched[0]);
-    movieArray = searched.map(movie => {
-      // console.log(movie);
-      const { title, id } = movie;
-      const arr = movie.genre_ids.map(int => {
-        for (var i = 0; i < movieGenres.length; i++) {
-          if (movieGenres[i].id === int){
-            return movieGenres[i].name;
-=======
       // res.send(array);
       return moviedb.searchMovies(title)
     })
@@ -68,7 +52,6 @@ module.exports = {
             if (movieGenres[i].id === int){
               return movieGenres[i].name;
             }
->>>>>>> Refactors routes to be dynamic wrt get and post requests, not just post
           }
         });
         return ({

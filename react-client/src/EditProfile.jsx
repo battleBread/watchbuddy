@@ -8,11 +8,10 @@ class EditProfile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      userName: 'Devon',
-      userNum: '1234567890',
-      avatarUrl: 'https://i.imgur.com/bVhY86x.jpg',
-      notifications: true,
-      bio: 'I created an account on Watch Potato so that I can watch my shows at specific times, have someone remind me to watch and even rate them!',
+      userName: this.props.userName,
+      userNum: this.props.userNumber,
+      avatar: this.props.userAvatarUrl,
+	    bio: this.props.userBio
     }
     this.updateEverything = this.updateEverything.bind(this);
     this.handleChangeBio = this.handleChangeBio.bind(this);
@@ -94,7 +93,7 @@ class EditProfile extends Component {
             <Card>
               <Image src={this.state.avatarUrl} />
             <Card.Content>
-              <Card.Header>{this.state.userName}</Card.Header>
+              <Card.Header>{this.props.userName}</Card.Header>
               <Card.Meta>Joined in 2017</Card.Meta>
               <Card.Description>{this.state.bio}</Card.Description>
             </Card.Content>

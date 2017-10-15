@@ -195,7 +195,12 @@ class App extends React.Component {
       />
     } else if (this.state.view === 'EditProfile') {
       return <EditProfile
-        changeView = { this.changeView.bind(this) } 
+        changeView = { this.changeView.bind(this) }
+        userName = {this.state.username}
+        userAvatarUrl = {this.state.userAvatarUrl}
+        userBio = {this.state.userBio}
+        userNumber = {this.state.userNumber}
+        userNotifications = {this.state.userNotifications} 
       />
     } else if (this.state.view === 'Home') {
       return <Home 

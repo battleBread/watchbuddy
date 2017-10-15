@@ -32,9 +32,10 @@ class Profile extends Component {
     this.props.changeView('UserHome');
   }
 
-  componentWillMount() {
+  componentDidMount() {
     console.log('mounted');
     console.log(this.props.userAvatarUrl)
+    this.props.getUsername();
   }
 
 	render () {
@@ -42,7 +43,7 @@ class Profile extends Component {
       <Transition animation='fade up' duration={1500} transitionOnMount={true}>
 			<div>
 				<NavBar
-				loggedIn='true' />	
+				loggedIn='true' changeView ={this.props.changeView} />	
         <Item.Group divided>
         <Item>
       <Item.Image src={this.props.userAvatarUrl} />
@@ -53,15 +54,6 @@ class Profile extends Component {
         </Item.Meta>
         <Item.Description>{this.props.userBio}</Item.Description>
         <Item.Extra>
-          <Container>
-          Current Number in use for Notifications: <strong>{this.props.userNumber}</strong>
-          <li>Notifications are {this.props.userNotification === true ? <Icon name = 'toggle on' className = 'icon' /> : <Icon name = 'toggle off' className = 'icon' /> }</li>
-          </Container>
-          <Button.Group>
-            <Button onClick={this.toggleNotificationOff}>Notifications Off</Button>
-            <Button.Or />
-            <Button onClick={this.toggleNotificationOn} positive>Notifcations On</Button>
-          </Button.Group>
           <Button onClick={this.editProfile}>Edit Profile &nbsp; 
               <Icon name = 'edit' className = 'icon'  />
           </Button>

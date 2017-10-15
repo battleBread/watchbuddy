@@ -42,6 +42,7 @@ class App extends React.Component {
       PostAddShowData: {},
       isTVShow: false
     };
+    this.setState = this.setState.bind(this);
   }
 
   changeView(option) {
@@ -57,7 +58,15 @@ class App extends React.Component {
       method: 'GET',
       contentType: 'application/json',
       data: JSON.stringify({username: this.state.username}),
-      success: (data) => this.updateUserProfile(data),
+      success: (data) => 
+      // this.setState({
+      //   userBio: data.info.bio,
+      //   userAvatarUrl: data.info.avatarUrl,
+      //   userNotifications: data.info.notifications,
+      //   userNumber: data.info.phone
+      // })
+      this.updateUserProfile(data)
+      ,
       error: () => this.renderErrorMessage()
     });
   }
@@ -192,6 +201,7 @@ class App extends React.Component {
         userNotifications = {this.state.userNotifications}
         userShows = {this.state.userShows}
         userMovies = {this.state.userMovies}
+        getUsername = {this.getUsername}
       />
     } else if (this.state.view === 'EditProfile') {
       return <EditProfile

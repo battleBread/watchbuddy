@@ -10,7 +10,7 @@ class EditProfile extends Component {
 		this.state = {
       userName: this.props.userName,
       userNum: this.props.userNumber,
-      avatar: this.props.userAvatarUrl,
+      avatarUrl: this.props.userAvatarUrl,
 	    bio: this.props.userBio
     }
     this.updateEverything = this.updateEverything.bind(this);
@@ -74,11 +74,13 @@ class EditProfile extends Component {
       }),
       success: 
         console.log(data)
+        
       // data => {
         // this.props.getPostAddShowData(data);
         // this.props.changeView('DisplaySchedule');
       // }
     });
+    this.props.changeView('Profile')
   }
 
 	render () {
@@ -86,7 +88,7 @@ class EditProfile extends Component {
       <Transition animation='fade up' duration={1500} transitionOnMount={true}>      
 			<div>
 				<NavBar
-				loggedIn='true' />	
+				loggedIn='true' changeView ={this.props.changeView} />	
 
         <Grid>
           <Grid.Column floated='right' width={5}>

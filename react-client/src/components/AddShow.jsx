@@ -132,7 +132,7 @@ class AddShow extends Component {
       }
       return episodes;
     }
-    // console.log(getEpisodesForDay(Number(this.state.selectedSeason), Number(this.state.selectedEpisode)));
+    console.log(getEpisodesForDay(Number(this.state.selectedSeason), Number(this.state.selectedEpisode)));
     var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     //determine available days
     var availDays = [];
@@ -142,7 +142,34 @@ class AddShow extends Component {
       }
     })
     // console.log(availDays);
-    
+
+    var start = this.state.startDatejs;
+    var end = this.state.endDatejs;
+    var createEvents = (start, end, numEpisodesPerDay, seasonStr, episodeStr) => {
+      // console.log('start date', this.state.startDatejs.getDate())
+      // console.log('end date', JSON.stringify(this.state.endDatejs));
+      var events = [];
+      var startDate = start;
+      var endDate = end;
+      var season = Number(seasonStr);
+      var episode = Number(episodeStr);
+      for (var day = start.getDate(); day <= end.getDate(); day++) {
+        if (availDays.includes(day.getDay())) {
+          var episodes = getEpisodesForDay(season, episode);
+          var title = episodes.map((pair) => {
+            return `S${pair[0]}E${pair[1]}`
+          }).join(', ')
+          var event = {
+            start: startDate,
+            end: endDate,
+            title: title
+          }
+          events.push(event)
+        }
+      }
+      return events;  
+    }
+
 
 
     //make ajax call to add with all info

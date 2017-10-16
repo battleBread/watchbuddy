@@ -11,7 +11,8 @@ class EditProfile extends Component {
       userName: this.props.userName,
       userNum: this.props.userNumber,
       avatarUrl: this.props.userAvatarUrl,
-	    bio: this.props.userBio
+      bio: this.props.userBio,
+      notifications: this.props.userNotifications
     }
     this.updateEverything = this.updateEverything.bind(this);
     this.handleChangeBio = this.handleChangeBio.bind(this);
@@ -82,7 +83,8 @@ class EditProfile extends Component {
       // }
     
     this.props.getUsername(this.state.userName)
-    this.props.changeView('Profile')
+    setTimeout(()=>{this.props.changeView('Profile')
+  },200)
   }
 
 	render () {

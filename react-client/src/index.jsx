@@ -49,6 +49,15 @@ class App extends React.Component {
     this.setState({ view: option });
   }
 
+  updateProfile(bio, avatar, number) {
+    this.setState({
+      userBio: bio,
+      userAvatarUrl: avatar,
+      number: number
+    })
+    console.log('update profile initiated')
+  }
+
   getUsername(username) {
     this.setState({ username });
     console.log('username: ', username)
@@ -211,6 +220,7 @@ class App extends React.Component {
         userBio = {this.state.userBio}
         userNumber = {this.state.userNumber}
         userNotifications = {this.state.userNotifications} 
+        getUsername = {this.getUsername.bind(this)}
       />
     } else if (this.state.view === 'Home') {
       return <Home 

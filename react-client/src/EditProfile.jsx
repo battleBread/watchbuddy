@@ -30,8 +30,8 @@ class EditProfile extends Component {
     console.log(this.state.userNum)
   }
   handleChangeAvatar(event) {
-    this.setState({avatar: event.target.value});
-    console.log(this.state.avatar)
+    this.setState({avatarUrl: event.target.value});
+    console.log(this.state.avatarUrl)
   }
 
   goToHome() {
@@ -68,18 +68,20 @@ class EditProfile extends Component {
       contentType: 'application/json',
       data: JSON.stringify({
         phone: this.state.userNum,
-        avatarUrl: this.state.avatar,
+        avatarUrl: this.state.avatarUrl,
         notifications: this.state.notifications,
         bio: this.state.bio,
       }),
       success: 
         console.log(data)
+        })
         
       // data => {
         // this.props.getPostAddShowData(data);
         // this.props.changeView('DisplaySchedule');
       // }
-    });
+    
+    this.props.getUsername(this.state.userName)
     this.props.changeView('Profile')
   }
 

@@ -10,6 +10,7 @@ class Profile extends Component {
 		this.state = {
       notification: true,
       phonenumber: '',
+      userAvatarUrl: '',
       name: '',
       userNum: '',
 			bio: '',
@@ -24,6 +25,10 @@ class Profile extends Component {
     this.props.changeView('EditProfile');
   }
   
+  updateProfile() {
+    this.props.getUsername(name)
+  }
+
   scheduleShow() {
     console.log('SCHEDULING show!');
   }

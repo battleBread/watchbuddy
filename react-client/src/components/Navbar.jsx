@@ -56,7 +56,7 @@ class Navbar extends Component {
           </Menu.Item>
           }
 
-        <Button icon color ='blue' onClick={this.goToProfilePage.bind(this)}> Go to Profile </Button>
+
 
 
 

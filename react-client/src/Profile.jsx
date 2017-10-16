@@ -3,6 +3,8 @@ import $ from 'jquery';
 import { Popup, Input, Table, Card, Item, Label, Rating, Container, Button, Form, Grid, Header, Image, Message, Segment, Icon, Transition } from 'semantic-ui-react';
 import NavBar from './components/Navbar.jsx';
 import data from './sampleData.js';
+//import Twilio from '../../server/routeHelpers/twilio.js'
+
 
 class Profile extends Component {
 	constructor(props) {

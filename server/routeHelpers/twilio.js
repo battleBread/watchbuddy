@@ -3,11 +3,11 @@ const accountSid = config.ACCOUNTSID;
 const authToken = config.AUTHTOKEN;
 const client = require('twilio')(accountSid, authToken);
 
-const sendReminder = (userNumber, userName, showName, callback) => {
+const sendReminder = (userName, showName, callback) => {
 console.log('sendReminder activated!');
 client.messages
   .create({
-    to: userNumber,
+    to: config.MYNUMBER,
     from: config.TWILIONUMBER,
     body: `Hey ${userName}, This is Watch Potato. We are reminding you that you should watch ${showName} today on your free time! After you are done, please send us a rating (1-5)!`
     // mediaUrl: 'https://climacons.herokuapp.com/clear.png',
@@ -15,11 +15,11 @@ client.messages
   .then((message) => console.log(message.sid));
 }
 
-const askForRating = (userNumber, userName, showName, callback) => {
+const askForRating = (userName, showName, callback) => {
 console.log('askForRating activated!');
 client.messages
   .create({
-    to: userNumber,
+    to: config.MYNUMBER,
     from: config.TWILIONUMBER,
     body: `Hey ${userName}! How was ${showName}? We would love for you to send us back a rating between 1-5 for our database collections`
   })
@@ -57,7 +57,7 @@ const twilio = (req, res) => {
   console.log('twilio called from server');
   let number = '+14152354088';
   let name = 'Devon';
-  let showName = 'The Bachelor';
+  let showName = 'The Wire';
   //sends out the reminder to user about watching show
   console.log('twilio clicked');
   sendReminder(number, name, showName);
@@ -85,6 +85,10 @@ const message = (req, res) => {
     </Response> 
     `);
 };
+
+
+module.exports.sendReminder = sendReminder;
+module.exports.askForRating = askForRating;
 
 module.exports = {
   post: {

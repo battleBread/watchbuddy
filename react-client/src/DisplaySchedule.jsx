@@ -3,7 +3,8 @@ import $ from 'jquery';
 import ShowList from './components/ShowList.jsx';
 import Navbar from './components/Navbar.jsx';
 import AddShow from './components/AddShow.jsx';
-import { Container, Header, Message, Segment, Icon, Grid, Image } from 'semantic-ui-react'
+//import Twilio from '../../server/routeHelpers/twilio.js'
+import { Container, Header, Message, Segment, Icon, Grid, Image, Button } from 'semantic-ui-react'
 
 class DisplaySchedule extends Component {
   constructor(props) {
@@ -12,6 +13,20 @@ class DisplaySchedule extends Component {
       PostAddShowData: {}
     };
   }
+
+  twilio1(){
+    console.log(this.props.PostAddShowData.first[3])
+    //twilio post call with usernumber and the show.
+    //twilio would then send a text to the user remidning them about the show
+  }
+
+  twilio2(){
+    console.log(this.props.PostAddShowData.second[3])
+    //twilio post call with usernumber and the show.
+    //twilio would then send a text to the user remidning them about the show
+
+  }
+
 
   render () {
     return (<div>
@@ -54,7 +69,8 @@ class DisplaySchedule extends Component {
               </Header>
 
               <p>{ this.props.PostAddShowData.first[4] }</p>
-            </Grid.Column>
+              <Button size='mini' icon color = 'blue' onClick={this.twilio1.bind(this)}>Twilio Text Notification </Button>
+              </Grid.Column>
           </Grid.Row>
 
           <Grid.Row>
@@ -73,6 +89,7 @@ class DisplaySchedule extends Component {
               </Header>
 
               <p>{ this.props.PostAddShowData.second[4] }</p>
+              <Button size='mini' icon color = 'blue' onClick={this.twilio2.bind(this)}>Twilio Text Notification </Button>
             </Grid.Column>
           </Grid.Row>
 

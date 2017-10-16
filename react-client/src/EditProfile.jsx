@@ -62,6 +62,7 @@ class EditProfile extends Component {
   console.log('this is num: ', this.state.userNum);
   console.log('this is bio: ', this.state.bio);
   console.log('this is avatar: ', this.state.avatarUrl);
+  console.log('this is notications: ', this.state.notifications);
 
     $.ajax({
       method: 'POST',
@@ -83,9 +84,8 @@ class EditProfile extends Component {
       // }
     
     this.props.getUsername(this.state.userName)
-    setTimeout(()=>{this.props.changeView('Profile')
-  },200)
-  }
+    //it would be better to have a promise here ( call getUsername THEN change the view)
+    setTimeout(()=>{this.props.changeView('Profile')},400)}
 
 	render () {
 		return (

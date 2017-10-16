@@ -10,7 +10,7 @@ class Profile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      notification: true,
+      notification: undefined,
       phonenumber: '',
       userAvatarUrl: '',
       name: '',
@@ -42,7 +42,7 @@ class Profile extends Component {
   componentDidMount() {
     console.log('mounted');
     console.log(this.props.userAvatarUrl)
-    this.props.getUsername();
+    //this.props.getUsername();
   }
 
 	render () {

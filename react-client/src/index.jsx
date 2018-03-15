@@ -23,7 +23,7 @@ class App extends React.Component {
       userShows: [],
       userMovies: [],
       showList: [{
-        firstAirDate: '2010-01-01',
+        firstAirDate: '2000-01-01',
         genres: ['Daniel'],
         image: '',
         summary: 'Default summary'
@@ -49,6 +49,14 @@ class App extends React.Component {
     this.setState({ view: option });
   }
 
+  updateProfile(bio, avatar, number) {
+    this.setState({
+      userBio: bio,
+      userAvatarUrl: avatar,
+      number: number
+    })
+    console.log('update profile initiated')
+  }
 
   getUsername(username) {
     this.setState({ username });
@@ -74,7 +82,9 @@ class App extends React.Component {
 
   updateUserProfile(data) {
     console.log('updating profile state')
-    console.log(data.info.notifications)
+    console.log('this is the data after signing logging in:',  data);
+    console.log(data.info.phone)
+    console.log(data.info.avatarUrl)
     
     this.setState({
       userBio: data.info.bio,
@@ -200,7 +210,7 @@ class App extends React.Component {
         userNotifications = {this.state.userNotifications}
         userShows = {this.state.userShows}
         userMovies = {this.state.userMovies}
-        getUsername = {this.getUsername.bind(this)}
+        getUsername = {this.getUsername}
       />
     } else if (this.state.view === 'EditProfile') {
       return <EditProfile

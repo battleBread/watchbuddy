@@ -80,7 +80,7 @@ class Signup extends Component {
                   fluid
                   icon = 'user'
                   iconPosition = 'left'
-                  placeholder = 'Username'
+                  placeholder = 'E-mail address'
                 />
                 <Form.Input 
                   onChange = { this.handlePasswordChange.bind(this) }

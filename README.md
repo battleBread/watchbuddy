@@ -1,11 +1,17 @@
-# WatchBuddy
+# WatchPotato 
 
-> Have too many shows to watch? Have some free time on certain days? Use WatchBuddy to figure out what episodes to watch for your overloaded shows!
+> Have too many shows to watch? Have some free time on certain days? Use WatchBuddy to figure out what episodes to watch for your overloaded shows! 
 
-## Team
+>Derived from WatchBuddy
 
+### WatchPotato Team
+  - Devon Yu
+  - Stephanie Wong
+  - Ben Stephens
+  - Tiffany Barth
+### WatchBuddy Team
   - Daniel Tran
-  - Helen Yi
+  - Helen Tran
   - Brian Kim
 
 ## Table of Contents
@@ -24,11 +30,11 @@
 >
 > existing user logs in with credentials
 >
-> once logged in, user can add a popular show or search for another show
+> once logged in, user can add a popular show/movie or search for another show/movie
 >
-> if user searches for a show, app returns matches
+> if user searches for a show/movies, app returns matches
 >
-> user can add show
+> user can add show/movie
 >
 > adding show will allow user to enter survey data, including the last
 >
@@ -76,7 +82,11 @@ To run the server:
 ```sh
 npm run server-dev
 ```
+Run MongoDB
 
+```sh
+sudo mongod
+```
 
 To run the webpack:
 
@@ -101,5 +111,4 @@ View the project roadmap [here](LINK_TO_DOC)
 For MovieDB api guidelines to retreive information, use:
 
 https://developers.themoviedb.org/4/getting-started
-
 

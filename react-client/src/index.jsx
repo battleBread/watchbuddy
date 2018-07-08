@@ -23,7 +23,7 @@ class App extends React.Component {
       userShows: [],
       userMovies: [],
       showList: [{
-        firstAirDate: '2010-01-01',
+        firstAirDate: '2000-01-01',
         genres: ['Daniel'],
         image: '',
         summary: 'Default summary'
@@ -47,6 +47,15 @@ class App extends React.Component {
 
   changeView(option) {
     this.setState({ view: option });
+  }
+
+  updateProfile(bio, avatar, number) {
+    this.setState({
+      userBio: bio,
+      userAvatarUrl: avatar,
+      number: number
+    })
+    console.log('update profile initiated')
   }
 
   getUsername(username) {
@@ -211,6 +220,7 @@ class App extends React.Component {
         userBio = {this.state.userBio}
         userNumber = {this.state.userNumber}
         userNotifications = {this.state.userNotifications} 
+        getUsername = {this.getUsername.bind(this)}
       />
     } else if (this.state.view === 'Home') {
       return <Home 

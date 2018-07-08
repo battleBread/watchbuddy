@@ -49,8 +49,7 @@ class AddShow extends Component {
       friday: 0,
       saturday: 0,
       sunday: 0,
-      username: '',
-      runtime: 0
+      username: ''
     };
   }
 
@@ -60,17 +59,13 @@ class AddShow extends Component {
 
     //handle showId
     this.setState({ showId: episodes.showId });
-    this.setState({ runtime: episodes.addedShowEpisodes.runtime})
 
     //handle show info
     //addedShowEpisodes is an object where each key has an array with elements:
       //[0] = number of episodes
       //[1] = season poster
     let seasonsObj = episodes.addedShowEpisodes.seasons;
-    console.log(seasonsObj)
-    this.setState({
-      originalSeasonObj: seasonsObj,
-      seasonsObj: seasonsObj});
+    this.setState({originalSeasonObj: seasonsObj});
     let seasonArr = [];
     let episodeArr = [];
     _.each(seasonsObj, (value, key, index) => {
@@ -82,111 +77,32 @@ class AddShow extends Component {
   }
 
   handleSubmit() {
-
-    var seasonObj = this.state.seasonsObj;
-    var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-    var availDays = [];
-    days.forEach((day, index) => {
-      if (this.state[day] === 1) {
-        availDays.push(index)
-      }
-    })
-    var runtimeInHours = this.state.runtime / 60;
-    var freeHours = this.state.selectedHour;
-    var numEpisodesPerDay = Math.floor(freeHours / runtimeInHours);
-
-    var nextEpisode = (season, episode) => {
-      var numEpisodesInSeason = seasonObj[season.toString()][0];
-      if (episode < numEpisodesInSeason) {
-        return [season, episode + 1];
-      } else {
-        season = season + 1;
-        if (seasonObj[season.toString()]) {
-          return [season, 1];
-        } else {
-          return false;
-        }
-      }
-    }
-
-    var getEpisodesForDay = (season, episode) => {
-      var episodes = [];
-      var counter = 1; //need to reset this at 1 for each day
-      while (counter <= numEpisodesPerDay) {
-        if (episodes.length === 0) {
-          episodes.push([season, episode])
-          counter++
-        } else {
-          var lastScheduledSeason = episodes[episodes.length - 1][0];
-          var lastScheduledEpisode = episodes[episodes.length - 1][1];
-          if (nextEpisode(lastScheduledSeason, lastScheduledEpisode)) {
-            episodes.push(nextEpisode(lastScheduledSeason, lastScheduledEpisode))
-          }
-          counter++
-        }
-      }
-      return episodes;
-    }
-
-    var createEvents = (start, end, numEpisodesPerDay, seasonStr, episodeStr) => {
-      var events = [];
-      var season = Number(seasonStr);
-      var episode = Number(episodeStr);
-      
-      for (var day = start.getDate(); day <= end.getDate(); day++) {
-        var date = new Date(start.setDate(day));
-        var startTime = new Date(date.setMinutes(0))
-        startTime = new Date(startTime.setHours(21));
-        startTime = new Date(startTime.setSeconds(0));
-        var endTime = new Date(startTime.setMinutes(0));
-        endTime = new Date(endTime.setHours(21 + freeHours));
-        endTime = new Date(endTime.setSeconds(0));
-        if (availDays.includes(date.getDay())) {
-          var episodes = getEpisodesForDay(season, episode);
-          var title = episodes.map((pair, i, arr) => {
-            if (i === arr.length - 1) {
-              var next = nextEpisode(pair[0], pair[1])
-              season = next[0];
-              episode = next[1];
-            }
-            return `S${pair[0]}E${pair[1]}`
-          }).join(', ')
-          var event = {
-            start: startTime,
-            end: endTime,
-            title: `${this.props.showName} ${title}`
-          }
-          events.push(event)
-        }
-      }
-      console.log('events: ', events);
-      return events;  
-    }
-
+    //make ajax call to add with all info
     $.ajax({
       method: 'POST',
-      url: `/user/${this.state.username}`,
+      url: '/addshow',
       contentType: 'application/json',
       data: JSON.stringify({
-        shows:[{
-          title: this.props.showName,
-          movieDB: this.state.showId,
-          // rating: 1, //Need to send this data to client first
-          episodes: [{
-            // title: this.state.selectedEpisode, //Need to get the episode name from movieDB
-            // rating: 1, //Need to send this data to client first
-            season: this.state.selectedSeason,
-            episode: this.state.selectedEpisode, 
-            runtime: this.state.runtime //Need to send this data to the client first
-          }]
-        }],
-        events: createEvents(this.state.startDatejs, this.state.endDatejs, numEpisodesPerDay, this.state.selectedSeason, this.state.selectedEpisode)
+        username: this.state.username,
+        showId: this.state.showId,
+        showName: this.props.showName,
+        season: this.state.selectedSeason,
+        episode: this.state.selectedEpisode,
+        startDate: this.state.startDatejs,
+        endDate: this.state.endDatejs,
+        monday: this.state.monday,
+        tuesday: this.state.tuesday,
+        wednesday: this.state.wednesday,
+        thursday: this.state.thursday,
+        friday: this.state.friday,
+        saturday: this.state.saturday,
+        sunday: this.state.sunday,
+        hours: this.state.selectedHour
       }),
       success: data => {
         this.props.getPostAddShowData(data);
         this.props.changeView('DisplaySchedule');
-      },
-      error: err => {console.log(err);}
+      }
     });
   }
 
@@ -228,7 +144,6 @@ class AddShow extends Component {
   }
 
   handleSelectedEpisode(event, { value }) {
-    // let valueNum = parseInt(value)
     this.setState({ selectedEpisode: value })
   }
 
